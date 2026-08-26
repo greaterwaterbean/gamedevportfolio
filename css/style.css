@@ -1,4 +1,5 @@
 :root {
+  color-scheme: dark;
   --bg: #1d140d;
   --bg-header: rgba(25, 17, 11, 0.88);
   --ink: #2e2013;
@@ -268,10 +269,9 @@ button {
   flex-shrink: 0;
 }
 
-.btn-icon svg {
+.btn-icon img {
   width: 20px;
   height: 20px;
-  fill: var(--ink);
 }
 
 .nav-toggle {
@@ -307,31 +307,59 @@ button {
 
 .hero-doodle {
   position: absolute;
-  opacity: 0.5;
+  opacity: 0.62;
   image-rendering: pixelated;
   pointer-events: none;
-  filter: drop-shadow(0 2px 0 rgba(0, 0, 0, 0.3));
+  filter: drop-shadow(0 2px 0 rgba(0, 0, 0, 0.35));
+  display: none;
 }
 
 .hero-doodle-1 {
-  top: 8px;
-  right: 18%;
-  width: 34px;
-  transform: rotate(-12deg);
+  top: 10px;
+  right: 20px;
+  width: 36px;
+  transform: rotate(-10deg);
 }
 
 .hero-doodle-2 {
-  top: 130px;
-  right: 4%;
+  top: 84px;
+  right: 130px;
   width: 26px;
-  transform: rotate(10deg);
+  transform: rotate(9deg);
 }
 
 .hero-doodle-3 {
-  top: 220px;
-  right: 22%;
+  top: 150px;
+  right: 50px;
+  width: 32px;
+  transform: rotate(-8deg);
+}
+
+.hero-doodle-4 {
+  top: 224px;
+  right: 150px;
+  width: 24px;
+  transform: rotate(-13deg);
+}
+
+.hero-doodle-5 {
+  top: 292px;
+  right: 30px;
+  width: 26px;
+  transform: rotate(12deg);
+}
+
+.hero-doodle-6 {
+  top: 360px;
+  right: 120px;
   width: 22px;
   transform: rotate(-6deg);
+}
+
+@media (min-width: 1280px) {
+  .hero-doodle {
+    display: block;
+  }
 }
 
 .hero-kicker {
@@ -417,10 +445,9 @@ button {
   margin-bottom: 20px;
 }
 
-.hero-actions .btn svg {
+.hero-actions .btn img {
   width: 17px;
   height: 17px;
-  fill: currentColor;
 }
 
 .hero-links {
@@ -1329,10 +1356,6 @@ button {
 
   .nav-toggle {
     display: flex;
-  }
-
-  .hero-doodle {
-    display: none;
   }
 
   .site-nav {
