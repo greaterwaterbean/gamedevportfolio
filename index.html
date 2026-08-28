@@ -12,7 +12,7 @@
 <link rel="icon" type="image/svg+xml" href="img/site/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Caveat:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Caveat:wght@600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -23,7 +23,6 @@
     <a href="index.html" class="logo">LUKE<span>BONNIWELL</span></a>
     <nav class="site-nav" data-nav>
       <a href="#about">About</a>
-      <a href="#skills">Skills</a>
       <a href="#projects">Projects</a>
       <a href="#devlog">Devlog</a>
       <a href="#contact">Contact</a>
@@ -41,42 +40,63 @@
 <main id="main">
 
   <section class="hero" id="home">
-    <img class="hero-doodle hero-doodle-1" src="img/icons/gamepad.png" alt="" aria-hidden="true">
-    <img class="hero-doodle hero-doodle-2" src="img/ui/icon-star.png" alt="" aria-hidden="true">
-    <img class="hero-doodle hero-doodle-3" src="img/icons/trophy.png" alt="" aria-hidden="true">
-    <img class="hero-doodle hero-doodle-4" src="img/icons/pencil.png" alt="" aria-hidden="true">
-    <img class="hero-doodle hero-doodle-5" src="img/icons/coin.png" alt="" aria-hidden="true">
-    <img class="hero-doodle hero-doodle-6" src="img/icons/key.png" alt="" aria-hidden="true">
-    <div class="wrap hero-inner">
-      <span class="hero-kicker">Game Programmer &amp; Designer</span>
-      <h1>Luke Bonniwell</h1>
-      <p class="hero-role">B.A. Computer Science × Game Studies — University of Delaware, 2026</p>
-      <p class="hero-lede">Programmer, level designer, and narrative lead who ships playable builds, not just prototypes. Currently building two new games in Unreal and Unity.</p>
-      <div class="hero-stats">
-        <div class="hero-stat"><span class="hero-stat-num">4</span><span class="hero-stat-label">Shipped Games</span></div>
-        <div class="hero-stat"><span class="hero-stat-num">2</span><span class="hero-stat-label">In Development</span></div>
-        <div class="hero-stat"><span class="hero-stat-num">3</span><span class="hero-stat-label">Godot · Unity · Unreal</span></div>
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <span class="hero-kicker">Game Programmer &amp; Designer</span>
+        <h1>Luke Bonniwell</h1>
+        <p class="hero-role">B.A. Computer Science × Game Studies — University of Delaware, 2026</p>
+        <p class="hero-lede">Programmer, level designer, and narrative lead who ships playable builds, not just prototypes. Currently building two new games in Unreal and Unity.</p>
+        <div class="hero-stats">
+          <div class="hero-stat"><span class="hero-stat-num">4</span><span class="hero-stat-label">Shipped Games</span></div>
+          <div class="hero-stat"><span class="hero-stat-num">2</span><span class="hero-stat-label">In Development</span></div>
+          <div class="hero-stat"><span class="hero-stat-num">3</span><span class="hero-stat-label">Godot · Unity · Unreal</span></div>
+        </div>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#projects">View Projects</a>
+          <a class="btn btn-ghost" href="https://github.com/Lukebonn" target="_blank" rel="noopener">
+            <img src="img/icons/github.png" alt="" width="17" height="17">
+            GitHub
+          </a>
+        </div>
+        <div class="hero-links">
+          <a href="#devlog">Read the Devlog</a>
+          <a href="https://www.linkedin.com/in/luke-bonniwell" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://lukebonn.itch.io" target="_blank" rel="noopener">itch.io</a>
+          <a href="mailto:lukebonniwell@gmail.com">Email</a>
+        </div>
       </div>
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="#projects">View Projects</a>
-        <a class="btn btn-ghost" href="https://github.com/Lukebonn" target="_blank" rel="noopener">
-          <img src="img/icons/github.png" alt="" width="17" height="17">
-          GitHub
-        </a>
-      </div>
-      <div class="hero-links">
-        <a href="#devlog">Read the Devlog</a>
-        <a href="https://www.linkedin.com/in/luke-bonniwell" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://lukebonn.itch.io" target="_blank" rel="noopener">itch.io</a>
-        <a href="mailto:lukebonniwell@gmail.com">Email</a>
+
+      <div class="hero-side">
+        <div class="photo-card">
+          <div class="media-frame" data-label="Add profile photo → img/site/profile.jpg (800×1000)">
+            <img data-placeholder src="img/site/profile.jpg" alt="Luke Bonniwell">
+          </div>
+          <div class="photo-card-caption">
+            <strong>Luke Bonniwell</strong>
+            <span>Player 1 · Programmer</span>
+          </div>
+        </div>
+        <div class="terminal-card">
+          <div class="terminal-bar">
+            <span class="terminal-dot red"></span>
+            <span class="terminal-dot yellow"></span>
+            <span class="terminal-dot green"></span>
+            <span class="terminal-title">luke@bonniwell</span>
+          </div>
+          <div class="terminal-body">
+            <span class="t-comment">// currently</span>
+            <span class="t-prompt">&gt;</span> shipping games, writing<br>
+            &nbsp;&nbsp;code, and keeping a devlog<span class="terminal-cursor"></span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="section" id="about">
+  <section class="section snap-section" id="about">
     <div class="wrap">
       <div class="about-grid">
-        <div class="reveal">
+        <div>
           <span class="eyebrow"><span class="eyebrow-num">01</span> About</span>
           <h2>Programmer first. Storyteller always.</h2>
           <div class="prose">
@@ -85,7 +105,7 @@
             <p>Right now I'm splitting time between a Reddit-style community app for veterinarians (my current internship) and two personal games — a souls-like boss encounter in Unreal, and a second project currently in early development.</p>
           </div>
         </div>
-        <dl class="fact-list reveal">
+        <dl class="fact-list">
           <div class="fact">
             <dt>Based in</dt>
             <dd>Philadelphia, PA</dd>
@@ -104,71 +124,116 @@
           </div>
         </dl>
       </div>
-    </div>
-  </section>
 
-  <section class="section" id="skills">
-    <div class="wrap">
-      <div class="section-head reveal">
-        <span class="eyebrow"><span class="eyebrow-num">02</span> Skills</span>
-        <h2>Tools of the trade</h2>
-      </div>
-      <div class="skills-grid reveal">
-        <div class="skill-group">
-          <h3>Languages</h3>
-          <div class="tag-row">
-            <span class="tag">GDScript</span>
-            <span class="tag">C#</span>
-            <span class="tag">C++</span>
-            <span class="tag">C</span>
-            <span class="tag">Python</span>
-            <span class="tag">TypeScript</span>
-            <span class="tag">x86 / ARM Assembly</span>
+      <div class="about-sub">
+        <h3 class="about-sub-title">Tools of the Trade</h3>
+        <div class="skills-grid">
+          <div class="skill-group">
+            <h3>Languages</h3>
+            <div class="tag-row">
+              <span class="tag">GDScript</span>
+              <span class="tag">C#</span>
+              <span class="tag">C++</span>
+              <span class="tag">C</span>
+              <span class="tag">Python</span>
+              <span class="tag">TypeScript</span>
+              <span class="tag">x86 / ARM Assembly</span>
+            </div>
           </div>
-        </div>
-        <div class="skill-group">
-          <h3>Engines &amp; Frameworks</h3>
-          <div class="tag-row">
-            <span class="tag">Unity</span>
-            <span class="tag">Godot</span>
-            <span class="tag">Unreal Engine</span>
-            <span class="tag">React / React Native</span>
-            <span class="tag">Node.js</span>
+          <div class="skill-group">
+            <h3>Engines &amp; Frameworks</h3>
+            <div class="tag-row">
+              <span class="tag">Unity</span>
+              <span class="tag">Godot</span>
+              <span class="tag">Unreal Engine</span>
+              <span class="tag">React / React Native</span>
+              <span class="tag">Node.js</span>
+            </div>
           </div>
-        </div>
-        <div class="skill-group">
-          <h3>Dev Tools &amp; Pipeline</h3>
-          <div class="tag-row">
-            <span class="tag">Git / GitHub</span>
-            <span class="tag">CI/CD</span>
-            <span class="tag">Docker</span>
-            <span class="tag">Blender</span>
-            <span class="tag">Agile / Scrum</span>
+          <div class="skill-group">
+            <h3>Dev Tools &amp; Pipeline</h3>
+            <div class="tag-row">
+              <span class="tag">Git / GitHub</span>
+              <span class="tag">CI/CD</span>
+              <span class="tag">Docker</span>
+              <span class="tag">Blender</span>
+              <span class="tag">Agile / Scrum</span>
+            </div>
           </div>
-        </div>
-        <div class="skill-group">
-          <h3>Design &amp; Production</h3>
-          <div class="tag-row">
-            <span class="tag">Level Design</span>
-            <span class="tag">Enemy Design</span>
-            <span class="tag">Narrative Design</span>
-            <span class="tag">Playtesting</span>
-            <span class="tag">Live Production</span>
+          <div class="skill-group">
+            <h3>Design &amp; Production</h3>
+            <div class="tag-row">
+              <span class="tag">Level Design</span>
+              <span class="tag">Enemy Design</span>
+              <span class="tag">Narrative Design</span>
+              <span class="tag">Playtesting</span>
+              <span class="tag">Live Production</span>
+            </div>
           </div>
         </div>
       </div>
+
+      <div class="about-sub">
+        <h3 class="about-sub-title">Games Made</h3>
+        <div class="terminal-card terminal-card-wide">
+          <div class="terminal-bar">
+            <span class="terminal-dot red"></span>
+            <span class="terminal-dot yellow"></span>
+            <span class="terminal-dot green"></span>
+            <span class="terminal-title">~/games</span>
+          </div>
+          <div class="terminal-body">
+            <div class="game-row">
+              <span class="game-status shipped">●</span>
+              <span class="game-title">Tails of the Tower</span>
+              <span class="game-engine">Godot</span>
+              <span class="game-links"><a href="https://csdcsdcsd.itch.io/tailsofthetower" target="_blank" rel="noopener">play</a> · <a href="https://github.com/Lukebonn/491-S26-TOOMANY-COOKS" target="_blank" rel="noopener">code</a> · <a href="projects/tails-of-the-tower.html">devlog</a></span>
+            </div>
+            <div class="game-row">
+              <span class="game-status shipped">●</span>
+              <span class="game-title">Whispers Through the Halls</span>
+              <span class="game-engine">Unity</span>
+              <span class="game-links"><a href="https://udel.itch.io/whispers-through-the-halls" target="_blank" rel="noopener">play</a> · <a href="https://github.com/Lukebonn/Game-467-Project-Luke" target="_blank" rel="noopener">code</a> · <a href="projects/whispers-through-the-halls.html">devlog</a></span>
+            </div>
+            <div class="game-row">
+              <span class="game-status shipped">●</span>
+              <span class="game-title">Project P.E.T.</span>
+              <span class="game-engine">Unity</span>
+              <span class="game-links"><a href="https://lukebonn.itch.io/project-pet" target="_blank" rel="noopener">play</a> · <a href="https://github.com/Lukebonn/GMC-Winter-Game-Jam-GJNH" target="_blank" rel="noopener">code</a> · <a href="projects/project-pet.html">devlog</a></span>
+            </div>
+            <div class="game-row">
+              <span class="game-status shipped">●</span>
+              <span class="game-title">WildShape</span>
+              <span class="game-engine">Unity</span>
+              <span class="game-links"><a href="https://github.com/Lukebonn/WildShape2DPlatformer" target="_blank" rel="noopener">code</a> · <a href="projects/wildshape.html">devlog</a></span>
+            </div>
+            <div class="game-row">
+              <span class="game-status progress">●</span>
+              <span class="game-title">Souls-Like Boss Encounter</span>
+              <span class="game-engine">Unreal</span>
+              <span class="game-links"><a href="https://github.com/Lukebonn/Unreal-Engine-SoulsLike" target="_blank" rel="noopener">code</a> · <a href="projects/unreal-soulslike.html">devlog</a></span>
+            </div>
+            <div class="game-row">
+              <span class="game-status progress">●</span>
+              <span class="game-title">Working Title</span>
+              <span class="game-engine">TBD</span>
+              <span class="game-links"><a href="projects/in-progress-2.html">devlog</a></span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <section class="section" id="projects">
+  <section class="section snap-section" id="projects">
     <div class="wrap">
-      <div class="section-head reveal">
-        <span class="eyebrow"><span class="eyebrow-num">03</span> Projects</span>
+      <div class="section-head">
+        <span class="eyebrow"><span class="eyebrow-num">02</span> Projects</span>
         <h2>Shipped &amp; in development</h2>
         <p>Four shipped games, two currently in the oven. Every project links out to a full devlog covering how it was actually built.</p>
       </div>
 
-      <div class="projects-grid reveal">
+      <div class="projects-grid">
 
         <article class="project-card">
           <a class="media-frame" href="projects/tails-of-the-tower.html" data-label="Add card image → img/projects/tails-of-the-tower/card.jpg (1200×675)">
@@ -308,20 +373,20 @@
     </div>
   </section>
 
-  <section class="section" id="devlog">
+  <section class="section snap-section" id="devlog">
     <div class="wrap">
-      <div class="devlog-book reveal" aria-hidden="true">
+      <div class="devlog-book" aria-hidden="true">
         <img class="book-cover" src="img/ui/book-cover.png" alt="">
         <img class="book-page-left" src="img/ui/book-page-left.png" alt="">
         <img class="book-page-right" src="img/ui/book-page-right.png" alt="">
       </div>
-      <div class="section-head reveal" style="margin: 0 auto 48px; text-align: center;">
-        <span class="eyebrow" style="justify-content: center;"><span class="eyebrow-num">04</span> Devlog</span>
+      <div class="section-head" style="margin: 0 auto 48px; text-align: center;">
+        <span class="eyebrow" style="justify-content: center;"><span class="eyebrow-num">03</span> Devlog</span>
         <h2>Latest from the logbook</h2>
         <p style="margin: 0 auto;">Running notes on what I'm building right now, pulled from each project's full devlog.</p>
       </div>
 
-      <div class="devlog-feed reveal">
+      <div class="devlog-feed">
         <a class="devlog-feed-item" href="projects/unreal-soulslike.html#log-2026-08-18">
           <div class="devlog-feed-meta">
             <span>Aug 18, 2026</span>
@@ -370,15 +435,15 @@
     </div>
   </section>
 
-  <section class="section" id="contact">
+  <section class="section snap-section" id="contact">
     <div class="wrap">
       <div class="contact-grid">
-        <div class="reveal">
-          <span class="eyebrow"><span class="eyebrow-num">05</span> Contact</span>
+        <div>
+          <span class="eyebrow"><span class="eyebrow-num">04</span> Contact</span>
           <h2>Let's build something.</h2>
           <p>Looking for programming, design, or hybrid roles in games. Open to full-time, contract, and internship conversations — reach out any of these ways.</p>
         </div>
-        <ul class="contact-links reveal">
+        <ul class="contact-links">
           <li>
             <a class="contact-link" href="mailto:lukebonniwell@gmail.com">
               <span class="contact-link-label"><img class="contact-icon" src="img/icons/letter.png" alt="">Email</span> <small>lukebonniwell@gmail.com</small>

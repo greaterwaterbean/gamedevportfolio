@@ -3,6 +3,7 @@ Every image the site expects is listed below. Nothing breaks if a file is missin
 ## Site
 
 - `img/site/favicon.svg` — already in place, replace if you want your own mark.
+- `img/site/profile.jpg` — your photo for the hero's ID-card portrait. Recommended `800x1000` (4:5 portrait).
 - `img/ui/` and `img/icons/` — real pixel-art assets (buttons, badges, the devlog book graphic, inline icons), not placeholders. Sourced from Crusenho's free itch.io UI packs — see `/credits.html` or `CREDITS.md` for attribution. Leave these as-is unless you're intentionally restyling.
 
 ## Per project (repeat this pattern for any new project folder)
