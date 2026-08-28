@@ -41,6 +41,19 @@
 
   <section class="hero" id="home">
     <div class="wrap hero-grid">
+      <div class="photo-card">
+        <div class="media-frame" data-label="Add profile photo → img/site/profile.jpg (800×1000)">
+          <picture>
+            <source media="(max-width: 900px)" srcset="img/site/profile-mobile.png">
+            <img data-placeholder src="img/site/profile.jpg" alt="Luke Bonniwell">
+          </picture>
+        </div>
+        <div class="photo-card-caption">
+          <strong>Luke Bonniwell</strong>
+          <span>Player 1 · Programmer</span>
+        </div>
+      </div>
+
       <div class="hero-copy">
         <span class="hero-kicker">Game Programmer &amp; Designer</span>
         <h1>Luke Bonniwell</h1>
@@ -61,27 +74,16 @@
         </div>
       </div>
 
-      <div class="hero-side">
-        <div class="photo-card">
-          <div class="media-frame" data-label="Add profile photo → img/site/profile.jpg (800×1000)">
-            <img data-placeholder src="img/site/profile.jpg" alt="Luke Bonniwell">
-          </div>
-          <div class="photo-card-caption">
-            <strong>Luke Bonniwell</strong>
-            <span>Player 1 · Programmer</span>
-          </div>
+      <div class="terminal-card">
+        <div class="terminal-bar">
+          <span class="terminal-dot red"></span>
+          <span class="terminal-dot yellow"></span>
+          <span class="terminal-dot green"></span>
+          <span class="terminal-title">luke@bonniwell</span>
         </div>
-        <div class="terminal-card">
-          <div class="terminal-bar">
-            <span class="terminal-dot red"></span>
-            <span class="terminal-dot yellow"></span>
-            <span class="terminal-dot green"></span>
-            <span class="terminal-title">luke@bonniwell</span>
-          </div>
-          <div class="terminal-body">
-            <span class="t-comment">// currently</span>
-            <span class="t-prompt">&gt;</span> shipping games, writing code, designing narratives, building levels, testing game mechanics, managing teams<span class="terminal-cursor"></span>
-          </div>
+        <div class="terminal-body">
+          <span class="t-comment">// currently</span>
+          <span class="t-prompt">&gt;</span> shipping games, writing code, designing narratives, building levels, testing game mechanics, managing teams<span class="terminal-cursor"></span>
         </div>
       </div>
     </div>

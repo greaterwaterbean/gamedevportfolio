@@ -308,26 +308,20 @@ button {
 
 .hero-grid {
   display: grid;
-  grid-template-columns: 1.3fr 1fr;
-  gap: 56px;
+  grid-template-columns: 230px 1fr 300px;
+  gap: 44px;
   align-items: center;
   width: 100%;
 }
 
 .hero-copy {
-  max-width: 620px;
-}
-
-.hero-side {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 26px;
+  max-width: 560px;
 }
 
 .photo-card {
   width: 100%;
   max-width: 260px;
+  margin: 0 auto;
   background: var(--cream);
   border: 3px solid var(--ink);
   border-radius: var(--radius-lg);
@@ -365,7 +359,8 @@ button {
 
 .terminal-card {
   width: 100%;
-  max-width: 260px;
+  max-width: 300px;
+  margin: 0 auto;
   background: #150f0a;
   border: 3px solid var(--ink);
   border-radius: var(--radius);
@@ -877,8 +872,15 @@ button {
   object-fit: cover;
 }
 
+.media-frame.fit-contain {
+  aspect-ratio: auto;
+  height: auto;
+  background: none;
+}
+
 .media-frame.fit-contain img {
-  object-fit: contain;
+  height: auto;
+  object-fit: initial;
 }
 
 .media-frame::after {
@@ -1501,13 +1503,37 @@ button {
   .project-body,
   .hero-grid {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 28px;
   }
 
-  .hero-side {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
+  .hero-copy {
+    order: 1;
+    max-width: none;
+  }
+
+  .photo-card {
+    order: 2;
+    max-width: 320px;
+    background: none;
+    border: none;
+    box-shadow: none;
+    transform: none;
+    padding: 0;
+  }
+
+  .photo-card .media-frame {
+    aspect-ratio: auto;
+    min-height: 220px;
+    border-radius: 0;
+    background: none;
+  }
+
+  .photo-card-caption {
+    display: none;
+  }
+
+  .terminal-card {
+    order: 3;
   }
 
   .contact-grid {
