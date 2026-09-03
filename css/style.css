@@ -1620,3 +1620,18 @@ button {
     gap: 12px;
   }
 }
+
+/* ============================================================
+   DEVLOG MODE TOGGLE
+   Portfolio-only mode: every devlog nav link, the hero "Read the
+   Devlog" CTA, the homepage Devlog feed section, and each
+   project page's own Devlog section are tagged .devlog-toggle in
+   the HTML and hidden by this one rule.
+
+   To bring the devlog back once it's ready to finish and show:
+   delete (or comment out) this rule, and change the Contact
+   eyebrow number in index.html back from 03 to 04.
+   ============================================================ */
+.devlog-toggle {
+  display: none !important;
+}
