@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark">
+<title>How I Use AI Coding Tools — Luke Bonniwell</title>
+<meta name="description" content="An honest account of where AI coding tools sit in my workflow: what I hand them, what I keep, and one thing they kept getting wrong on a 5-week internship MVP.">
+<meta property="og:title" content="How I Use AI Coding Tools — Luke Bonniwell">
+<meta property="og:description" content="What I hand the model, what I keep, and one concrete time I had to override it.">
+<meta property="og:type" content="article">
+<link rel="icon" type="image/svg+xml" href="../../img/site/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Caveat:wght@600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a href="../../index.html" class="logo">LUKE<span>BONNIWELL</span></a>
+    <nav class="site-nav" data-nav>
+      <a href="../../index.html#about">About</a>
+      <a href="../../index.html#projects">Projects</a>
+      <a class="devlog-toggle" href="../../index.html#devlog">Devlog</a>
+      <a href="../../index.html#contact">Contact</a>
+      <a class="btn btn-ghost btn-icon" href="https://github.com/Lukebonn" target="_blank" rel="noopener" title="GitHub">
+        <img src="../../img/icons/github.png" alt="GitHub" width="20" height="20">
+      </a>
+      <a class="btn btn-ghost" href="../../resume/Luke-Bonniwell-Resume.pdf" target="_blank" rel="noopener">Resume</a>
+    </nav>
+    <button class="nav-toggle" data-nav-toggle aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="project-hero">
+    <div class="wrap">
+      <a class="breadcrumb" href="../../index.html">&larr; lukebonniwell.com</a>
+      <div class="project-hero-top">
+        <span class="badge badge-progress">Devlog</span>
+        <span class="project-card-tools">Claude Code &middot; Gemini</span>
+      </div>
+      <h1>How I use AI coding tools</h1>
+      <p class="project-tagline">A short, honest account of where these tools sit in my workflow &mdash; what I hand them, what I keep for myself, and one thing they kept getting wrong.</p>
+
+      <div class="project-meta-row">
+        <div class="fact">
+          <dt>Context</dt>
+          <dd>IndeVets internship, summer 2026</dd>
+        </div>
+        <div class="fact">
+          <dt>Build</dt>
+          <dd>React Native mobile client, 5-week MVP</dd>
+        </div>
+        <div class="fact">
+          <dt>Role</dt>
+          <dd>Frontend, 1 of 2 engineering interns</dd>
+        </div>
+        <div class="fact">
+          <dt>Tools</dt>
+          <dd>Claude Code &amp; Gemini &mdash; CLI and editor extensions</dd>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="border-top: none; padding-top: 0;">
+    <div class="wrap">
+      <div class="project-body">
+        <div class="prose">
+          <h2>The project</h2>
+          <p>Over summer 2026 I was one of two engineering interns on a full-stack product team at IndeVets, building a veterinarian-only community platform &mdash; a Reddit-style app for a professional audience. I owned the entire frontend: a cross-platform mobile client in React Native, Expo, and TypeScript, taken from nothing to a functional MVP in five weeks.</p>
+          <p>That meant building the core of the app end to end &mdash; home feed, post composer, threaded case discussions, a moderation queue, inbox, and user profiles &mdash; on a component-based design system, with Redux Toolkit for state and React Hook Form plus Zod for validation. The frontend talked to a teammate's REST backend (Express, Prisma, PostgreSQL), so a lot of the work was coordinating a shared Firebase authentication flow and matching validation schemas across two repositories. Everything shipped through feature branches, pull request review, and weekly releases.</p>
+
+          <h2>Where the tools fit, and where they don't</h2>
+          <p>Day to day I work with Claude Code and Gemini, through both their command-line tools and their editor extensions in VS Code, plus the browser when I'm sketching something out.</p>
+          <p>What I hand them: syntax checks, project-structure brainstorming, routine git and file housekeeping, and modeling &mdash; turning a rough idea or a Figma sketch into a concrete draft I can put in front of product engineers or the marketing team, so we're reacting to something real instead of a description.</p>
+          <p>What I don't hand them: the codebase itself. I wrote the feature code for this app. The model was an assistant, not the author, and I kept it there on purpose. If I let it write the code that ships, I lose the familiarity with the system that lets me catch it when it's confidently wrong &mdash; and on this project it was wrong often enough that that familiarity was the whole point.</p>
+
+          <h2>The part it kept getting wrong</h2>
+          <p>The clearest example was mockups. I'd give a model one of my Figma sketches and ask it to turn it into a working draft of a screen. It would come back looking roughly right and wrong in the details: buttons in colors that weren't anywhere in the company's palette, button sizes that didn't match the pixel values in the spec, and &mdash; more than once &mdash; logos belonging to entirely different companies dropped in where ours should have been.</p>
+          <p>None of that is a disaster on its own. It becomes one if it reaches a colleague, because then you're presenting some other company's brand as your team's work. I caught it because I already knew the design system and the codebase well enough to see the mismatches straight away &mdash; the colors were simply not ones we used, the proportions were off, the logo wasn't ours. So the fix was manual: I corrected the colors, resized the components to spec, and swapped the real assets back in by hand before the mockup went to anyone. The model got me to a draft faster; it did not get me to something I could show.</p>
+
+          <h2>What I'd do differently</h2>
+          <p>I'd generate more drafts, not fewer. The value was never in one output being correct &mdash; it was in having something concrete to hold up against a standard I already carried, and pick apart. The most useful thing I took from that internship was how much criticism is worth: those drafts were only useful because I could criticize them hard and specifically. Next time I'd lean into that and treat the model as a way to produce more things to react to, earlier.</p>
+        </div>
+
+        <aside>
+          <div class="side-card">
+            <h3>The short version</h3>
+            <p style="margin:0 0 12px; font-size:14.5px;"><strong>Hand off:</strong> syntax checks, structure brainstorming, git housekeeping, first-draft mockups from sketches.</p>
+            <p style="margin:0 0 12px; font-size:14.5px;"><strong>Keep:</strong> the feature code that ships.</p>
+            <p style="margin:0; font-size:14.5px;"><strong>Overrode it when:</strong> mockups came back with off-brand colors, wrong button sizes, and other companies' logos &mdash; fixed by hand before anyone saw them.</p>
+          </div>
+          <div class="side-card">
+            <h3>Stack</h3>
+            <div class="tag-row">
+              <span class="tag">React Native</span>
+              <span class="tag">Expo</span>
+              <span class="tag">TypeScript</span>
+              <span class="tag">Redux Toolkit</span>
+              <span class="tag">React Hook Form</span>
+              <span class="tag">Zod</span>
+              <span class="tag">Firebase Auth</span>
+            </div>
+            <p style="margin:14px 0 0; font-size:14.5px;">Backend by a teammate: Express, Prisma, PostgreSQL.</p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section next-project-section" style="padding-top: 0; border-top: none;">
+    <div class="wrap">
+      <div class="next-project">
+        <a href="../../index.html">&larr; lukebonniwell.com</a>
+        <a href="../../index.html#projects">See the projects &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <span>&copy; <span data-year></span> Luke Bonniwell</span>
+    <div class="footer-links">
+      <a href="https://github.com/Lukebonn" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/luke-bonniwell" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="../../credits.html">UI Assets &amp; Credits</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../../js/main.js" defer></script>
+</body>
+</html>
