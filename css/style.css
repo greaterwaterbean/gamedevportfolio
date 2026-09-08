@@ -1933,6 +1933,8 @@ button {
    ============================================================ */
 .badge-topgm {
   align-self: flex-start;
+  width: max-content;
+  max-width: 100%;
   margin-top: -2px;
   background: #eaf2fb;
   color: #274a6b;
