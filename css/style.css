@@ -1928,15 +1928,12 @@ button {
 
 /* ============================================================
    TOP GM BADGE  (Experience — Dungeon Master card)
+   Sits on its own line under the card title so all three
+   Experience titles stay aligned.
    ============================================================ */
-.badge-stack {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px;
-}
-
 .badge-topgm {
+  align-self: flex-start;
+  margin-top: -2px;
   background: #eaf2fb;
   color: #274a6b;
 }
