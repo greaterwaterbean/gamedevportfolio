@@ -53,4 +53,54 @@
   document.querySelectorAll('[data-year]').forEach(function (el) {
     el.textContent = new Date().getFullYear();
   });
+
+  // Contact form: no backend, so hand the note off to the visitor's email app.
+  var contactForm = document.querySelector('[data-contact-form]');
+  if (contactForm) {
+    contactForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var get = function (name) {
+        var field = contactForm.elements[name];
+        return field ? field.value.trim() : '';
+      };
+      var name = get('name');
+      var email = get('email');
+      var subject = get('subject') || 'Message from lukebonniwell.com';
+      var lines = [get('message'), ''];
+      if (name) lines.push('— ' + name);
+      if (email) lines.push(email);
+      var href =
+        'mailto:lukebonniwell@gmail.com' +
+        '?subject=' + encodeURIComponent(subject) +
+        '&body=' + encodeURIComponent(lines.join('\n'));
+      var note = contactForm.querySelector('[data-form-note]');
+      if (note) note.textContent = 'Opening your email app…';
+      window.location.href = href;
+    });
+  }
+
+  // Quick links: copy the email address to the clipboard (fall back to a mail compose).
+  var copyBtn = document.querySelector('[data-copy-email]');
+  if (copyBtn) {
+    var copyLabel = copyBtn.querySelector('[data-copy-label]');
+    var copyDefault = copyLabel ? copyLabel.textContent : '';
+    copyBtn.addEventListener('click', function () {
+      var address = copyBtn.getAttribute('data-email');
+      var flash = function (msg) {
+        if (!copyLabel) return;
+        copyLabel.textContent = msg;
+        setTimeout(function () {
+          copyLabel.textContent = copyDefault;
+        }, 2000);
+      };
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(address).then(
+          function () { flash('copied to clipboard'); },
+          function () { window.location.href = 'mailto:' + address; }
+        );
+      } else {
+        window.location.href = 'mailto:' + address;
+      }
+    });
+  }
 })();
