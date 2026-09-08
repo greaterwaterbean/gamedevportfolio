@@ -28,13 +28,15 @@
       <a href="#experience">Experience</a>
       <a class="devlog-toggle" href="#devlog">Devlog</a>
       <a href="#contact">Contact</a>
-      <a class="btn btn-ghost btn-icon" href="https://www.linkedin.com/in/luke-bonniwell" target="_blank" rel="noopener" title="LinkedIn">
-        <img src="img/icons/linkedin.svg" alt="LinkedIn" width="20" height="20">
-      </a>
-      <a class="btn btn-ghost btn-icon" href="https://github.com/Lukebonn" target="_blank" rel="noopener" title="GitHub">
-        <img src="img/icons/github.png" alt="GitHub" width="20" height="20">
-      </a>
-      <a class="btn btn-ghost" href="resume/Luke-Bonniwell-Resume.pdf" target="_blank" rel="noopener">Resume</a>
+      <span class="nav-actions">
+        <a class="btn btn-ghost btn-icon" href="https://www.linkedin.com/in/luke-bonniwell" target="_blank" rel="noopener" title="LinkedIn">
+          <img src="img/icons/linkedin.svg" alt="LinkedIn" width="20" height="20">
+        </a>
+        <a class="btn btn-ghost btn-icon" href="https://github.com/Lukebonn" target="_blank" rel="noopener" title="GitHub">
+          <img src="img/icons/github.png" alt="GitHub" width="20" height="20">
+        </a>
+        <a class="btn btn-ghost" href="resume/Luke-Bonniwell-Resume.pdf" target="_blank" rel="noopener">Resume</a>
+      </span>
     </nav>
     <button class="nav-toggle" data-nav-toggle aria-label="Toggle navigation" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -74,7 +76,6 @@
             <img src="img/icons/github.png" alt="" width="17" height="17">
             GitHub
           </a>
-          <a class="btn btn-ghost" href="devlog/how-i-use-ai/">How I Use AI</a>
         </div>
         <div class="hero-links">
           <a class="devlog-toggle" href="#devlog">Read the Devlog</a>
@@ -310,7 +311,7 @@
           <div class="project-card-body">
             <div class="project-card-top">
               <span class="badge badge-shipped">Completed</span>
-              <span class="project-card-tools">Jun – Aug 2026</span>
+              <span class="project-card-tools">Jun 2026 – Aug 2026</span>
             </div>
             <h3>Technology Intern — IndeVets</h3>
             <p>One of two engineering interns on a full-stack team. Owned the entire frontend of a veterinarian community platform — a cross-platform React Native, Expo, and TypeScript app — and shipped the MVP in five weeks, then wrote production code through the same ticket, PR-review, and weekly-deploy cycle as the full-time engineers.</p>
@@ -319,9 +320,6 @@
               <span class="tag">TypeScript</span>
               <span class="tag">Redux Toolkit</span>
               <span class="tag">Agile</span>
-            </div>
-            <div class="project-card-links">
-              <a href="devlog/how-i-use-ai/">How this shipped →</a>
             </div>
           </div>
         </article>
@@ -349,11 +347,14 @@
         <article class="project-card">
           <div class="project-card-body">
             <div class="project-card-top">
-              <span class="badge badge-progress">Ongoing</span>
-              <span class="project-card-tools">2024 – present</span>
+              <span class="badge-stack">
+                <span class="badge badge-progress">Ongoing</span>
+                <span class="badge badge-topgm">Top GM</span>
+              </span>
+              <span class="project-card-tools">Jun 2024 – present</span>
             </div>
             <h3>Dungeon Master — StartPlaying</h3>
-            <p>Run paid Dungeons &amp; Dragons campaigns for 5–6 players, booked through StartPlaying, currently about two sessions a week. Design homebrew campaigns, encounters, and a modular character-progression system from scratch — narrative design with an audience that talks back. 5.0 rating across 12 verified reviews.</p>
+            <p>Run paid Dungeons &amp; Dragons campaigns for 5–6 players, booked through StartPlaying, currently about two sessions a week — designing homebrew campaigns, encounters, and a modular character-progression system from scratch. <strong>Awarded StartPlaying's Top GM badge</strong> (re-reviewed monthly, currently held), with a <strong>5.0 rating across 12 verified reviews</strong>.</p>
             <div class="tag-row">
               <span class="tag">Systems Design</span>
               <span class="tag">Narrative Design</span>
@@ -441,7 +442,7 @@
       </div>
 
       <div class="contact-form-grid">
-        <form class="contact-card" data-contact-form action="mailto:lukebonniwell@gmail.com" method="post" enctype="text/plain">
+        <form class="contact-card" data-contact-form action="https://formspree.io/f/xkjnpzdp" method="POST">
           <div class="contact-card-head">
             <span class="contact-card-icon"><img src="img/icons/letter.png" alt="" width="20" height="20"></span>
             <h3>Send Me a Note</h3>
@@ -466,7 +467,7 @@
           </label>
           <div class="form-foot">
             <button type="submit" class="btn btn-primary">Send Message</button>
-            <span class="form-note" data-form-note>Opens your email app with the note ready to send.</span>
+            <span class="form-note" data-form-note>Goes straight to my inbox — I'll reply to the address you leave.</span>
           </div>
         </form>
 

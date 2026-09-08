@@ -54,28 +54,43 @@
     el.textContent = new Date().getFullYear();
   });
 
-  // Contact form: no backend, so hand the note off to the visitor's email app.
+  // Contact form: submit to Formspree over fetch so the visitor stays on the page.
   var contactForm = document.querySelector('[data-contact-form]');
   if (contactForm) {
+    var note = contactForm.querySelector('[data-form-note]');
+    var submitBtn = contactForm.querySelector('button[type="submit"]');
+
     contactForm.addEventListener('submit', function (e) {
+      if (!window.fetch) return; // no fetch: let the native POST to Formspree happen
       e.preventDefault();
-      var get = function (name) {
-        var field = contactForm.elements[name];
-        return field ? field.value.trim() : '';
-      };
-      var name = get('name');
-      var email = get('email');
-      var subject = get('subject') || 'Message from lukebonniwell.com';
-      var lines = [get('message'), ''];
-      if (name) lines.push('— ' + name);
-      if (email) lines.push(email);
-      var href =
-        'mailto:lukebonniwell@gmail.com' +
-        '?subject=' + encodeURIComponent(subject) +
-        '&body=' + encodeURIComponent(lines.join('\n'));
-      var note = contactForm.querySelector('[data-form-note]');
-      if (note) note.textContent = 'Opening your email app…';
-      window.location.href = href;
+      if (note) note.textContent = 'Sending…';
+      if (submitBtn) submitBtn.disabled = true;
+
+      fetch(contactForm.action, {
+        method: 'POST',
+        body: new FormData(contactForm),
+        headers: { Accept: 'application/json' }
+      })
+        .then(function (res) {
+          if (res.ok) {
+            contactForm.reset();
+            if (note) note.textContent = "Thanks — your note is in. I'll be in touch.";
+          } else {
+            return res.json().then(function (data) {
+              var msg =
+                data && data.errors && data.errors.length
+                  ? data.errors.map(function (x) { return x.message; }).join(', ')
+                  : 'Something went wrong. Email me directly at lukebonniwell@gmail.com.';
+              if (note) note.textContent = msg;
+              if (submitBtn) submitBtn.disabled = false;
+            });
+          }
+        })
+        .catch(function () {
+          if (note) note.textContent =
+            "Couldn't send just now. Email me directly at lukebonniwell@gmail.com.";
+          if (submitBtn) submitBtn.disabled = false;
+        });
     });
   }
 

@@ -1660,6 +1660,15 @@ button {
   padding-top: 6px;
 }
 
+#experience .project-card-top {
+  align-items: flex-start;
+}
+
+#experience .project-card-tools {
+  white-space: nowrap;
+  padding-top: 3px;
+}
+
 /* ============================================================
    CONTACT FORM + QUICK LINKS
    ============================================================ */
@@ -1893,4 +1902,45 @@ button {
   .form-row {
     grid-template-columns: 1fr;
   }
+}
+
+/* ============================================================
+   NAV ACTION GROUP
+   Keeps the text links on the nav's 26px rhythm while pulling
+   the LinkedIn / GitHub / Resume buttons tight together.
+   ============================================================ */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+@media (max-width: 720px) {
+  .nav-actions {
+    flex-wrap: wrap;
+    margin-top: 14px;
+  }
+
+  .nav-actions .btn {
+    margin-top: 0;
+  }
+}
+
+/* ============================================================
+   TOP GM BADGE  (Experience — Dungeon Master card)
+   ============================================================ */
+.badge-stack {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.badge-topgm {
+  background: #eaf2fb;
+  color: #274a6b;
+}
+
+.badge-topgm::before {
+  background-image: url(../img/icons/topgm.svg);
 }
