@@ -1197,7 +1197,8 @@ button {
 
 .footer-links {
   display: flex;
-  gap: 20px;
+  flex-wrap: wrap;
+  gap: 8px 20px;
 }
 
 .project-hero {
@@ -1565,7 +1566,11 @@ button {
   .section {
     padding: 64px 0;
   }
+}
 
+/* The full nav plus the coin counter needs ~930px, so the menu
+   collapses into the toggle below 960px. */
+@media (max-width: 960px) {
   .nav-toggle {
     display: flex;
   }
@@ -1921,7 +1926,7 @@ button {
   gap: 10px;
 }
 
-@media (max-width: 720px) {
+@media (max-width: 960px) {
   .nav-actions {
     flex-wrap: wrap;
     margin-top: 14px;
@@ -1948,4 +1953,593 @@ button {
 
 .badge-topgm::before {
   background-image: url(../img/icons/topgm.svg);
+}
+
+/* ============================================================
+   GAME LAYER
+   Pixel sprites from 0x72's DungeonTileset II (CC0), cut into
+   horizontal strips in img/sprites/ — see credits.html.
+
+   Every animated piece is gated by a word in index.html's
+   <body data-fx="...">. To veto one, delete its word there;
+   everything tagged with the matching .fx-* class disappears
+   and (for coin-hunt) its JS never runs.
+
+     player-one  knight + "P1" tag standing on the hero photo card
+     critters    idle monsters perched on the three project cards
+     patrol      knight running back and forth along the footer
+     coin-hunt   6 spinning coins hidden in cards, a header
+                 counter, and a chest in Contact that unlocks
+                 once all 6 are found
+     press-start "PRESS START" over project key art on hover
+   ============================================================ */
+body:not([data-fx~="player-one"]) .fx-player-one,
+body:not([data-fx~="critters"]) .fx-critters,
+body:not([data-fx~="patrol"]) .fx-patrol,
+body:not([data-fx~="coin-hunt"]) .fx-coin-hunt {
+  display: none !important;
+}
+
+:root {
+  --font-pixel: 'Silkscreen', 'JetBrains Mono', monospace;
+}
+
+/* --- Sprite strips -------------------------------------------
+   One horizontal strip per animation. --fw/--fh are the frame
+   size in source pixels, --px the on-screen scale (3 everywhere
+   by default, so every sprite shares one pixel size). */
+.sprite {
+  --px: 3;
+  --dur: 0.6s;
+  display: inline-block;
+  flex-shrink: 0;
+  width: calc(var(--fw) * var(--px) * 1px);
+  height: calc(var(--fh) * var(--px) * 1px);
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: calc(var(--fw) * var(--frames) * var(--px) * 1px) 100%;
+  image-rendering: pixelated;
+  animation: sprite-play var(--dur) steps(var(--frames)) infinite;
+}
+
+@keyframes sprite-play {
+  to {
+    background-position-x: calc(var(--fw) * var(--frames) * var(--px) * -1px);
+  }
+}
+
+.sprite-knight-idle {
+  --fw: 16; --fh: 28; --frames: 4; --dur: 0.7s;
+  background-image: url(../img/sprites/knight-idle.png);
+}
+
+.sprite-knight-run {
+  --fw: 16; --fh: 28; --frames: 4; --dur: 0.42s;
+  background-image: url(../img/sprites/knight-run.png);
+}
+
+.sprite-chort {
+  --fw: 16; --fh: 23; --frames: 4; --dur: 0.7s;
+  background-image: url(../img/sprites/chort-idle.png);
+}
+
+.sprite-necromancer {
+  --fw: 16; --fh: 23; --frames: 4; --dur: 0.9s;
+  background-image: url(../img/sprites/necromancer.png);
+}
+
+.sprite-slug {
+  --fw: 16; --fh: 16; --frames: 4; --dur: 0.8s;
+  background-image: url(../img/sprites/tiny-slug.png);
+}
+
+.sprite-coin {
+  --fw: 6; --fh: 7; --frames: 4; --dur: 0.6s;
+  background-image: url(../img/sprites/coin.png);
+}
+
+.sprite-chest {
+  --fw: 16; --fh: 16; --frames: 3;
+  background-image: url(../img/sprites/chest.png);
+  animation: none;
+}
+
+/* --- Skills: inventory slots (static, always on) ------------- */
+.skill-group h3 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.inv-slot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  background: var(--ink);
+  border: 2px solid var(--shadow-ink);
+  border-radius: 7px;
+  box-shadow: inset 0 0 0 2px var(--border), 2px 2px 0 var(--shadow-ink);
+}
+
+.inv-slot img {
+  width: 32px;
+  height: 32px;
+  image-rendering: pixelated;
+}
+
+/* --- player-one ---------------------------------------------- */
+.photo-card {
+  position: relative;
+}
+
+.player-one {
+  position: absolute;
+  bottom: 100%;
+  right: 26px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+}
+
+.player-one .sprite {
+  display: block;
+}
+
+.p1-tag {
+  position: relative;
+  /* the knight strip has 8 empty rows (24px) above the helmet */
+  margin-bottom: -14px;
+  padding: 3px 6px 2px;
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  line-height: 1;
+  color: var(--ink);
+  background: var(--accent);
+  border: 2px solid var(--ink);
+  border-radius: 4px;
+  animation: p1-bob 1.1s ease-in-out infinite;
+}
+
+.p1-tag::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  margin-left: -5px;
+  border: 5px solid transparent;
+  border-top-color: var(--ink);
+}
+
+@keyframes p1-bob {
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+/* --- critters ------------------------------------------------ */
+.critter {
+  position: absolute;
+  bottom: 100%;
+  margin-bottom: -3px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.critter-left {
+  left: 30px;
+}
+
+.critter-right {
+  right: 30px;
+}
+
+body[data-fx~="critters"] #projects .projects-grid {
+  row-gap: 96px;
+  padding-top: 24px;
+}
+
+/* --- patrol -------------------------------------------------- */
+.site-footer {
+  position: relative;
+}
+
+.patrol {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 100%;
+  max-width: var(--maxw);
+  height: 84px;
+  margin: 0 auto;
+  pointer-events: none;
+}
+
+.patrol-walker {
+  position: absolute;
+  bottom: 0;
+  left: 24px;
+  animation: patrol-move 14s linear infinite alternate;
+}
+
+.patrol-facing {
+  display: block;
+  animation: patrol-face 28s steps(1) infinite;
+}
+
+.patrol-facing .sprite {
+  display: block;
+}
+
+@keyframes patrol-move {
+  to {
+    left: calc(100% - 72px);
+  }
+}
+
+@keyframes patrol-face {
+  0% {
+    transform: scaleX(1);
+  }
+  50% {
+    transform: scaleX(-1);
+  }
+}
+
+/* --- coin-hunt ----------------------------------------------- */
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.coin-hud {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 9px 4px 8px;
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  line-height: 1;
+  color: var(--text-dim);
+  background: #150f0a;
+  border: 2px solid var(--border);
+  border-radius: 7px;
+  box-shadow: 2px 2px 0 var(--shadow-ink);
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.coin-hud .sprite-coin {
+  --px: 2;
+}
+
+.coin-hud:hover,
+.coin-hud.is-complete {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.coin-hud.is-bump {
+  animation: hud-bump 0.35s ease;
+}
+
+@keyframes hud-bump {
+  40% {
+    transform: scale(1.18) rotate(-3deg);
+  }
+}
+
+.fact-list,
+.skill-group {
+  position: relative;
+}
+
+.coin {
+  position: absolute;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  background: none;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  filter: drop-shadow(2px 2px 0 var(--shadow-ink));
+  transition: transform 0.12s ease;
+}
+
+.coin[hidden] {
+  display: none;
+}
+
+.coin:hover {
+  transform: scale(1.2);
+}
+
+.coin:focus-visible {
+  outline: 2px dashed var(--accent);
+  outline-offset: 2px;
+}
+
+/* stuck to a card's corner like a sticker */
+.coin-corner {
+  right: -14px;
+  bottom: -14px;
+}
+
+.coin-corner-top {
+  right: -14px;
+  top: -14px;
+}
+
+/* lives in a terminal title bar, pushed to the right end */
+.coin-inline {
+  position: static;
+  width: 22px;
+  height: 22px;
+  margin: -6px -4px -6px auto;
+  filter: none;
+}
+
+.coin-inline .sprite-coin {
+  --px: 2;
+}
+
+.coin.is-collected {
+  pointer-events: none;
+  animation: coin-grab 0.45s ease-out forwards;
+}
+
+@keyframes coin-grab {
+  40% {
+    transform: translateY(-18px) scale(1.3);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-30px) scale(0.6);
+    opacity: 0;
+  }
+}
+
+.coin-pop {
+  position: fixed;
+  z-index: 700;
+  font-family: var(--font-pixel);
+  font-size: 14px;
+  color: var(--accent);
+  text-shadow: 2px 2px 0 var(--shadow-ink);
+  pointer-events: none;
+  animation: coin-pop 0.8s ease-out forwards;
+}
+
+@keyframes coin-pop {
+  to {
+    transform: translateY(-36px);
+    opacity: 0;
+  }
+}
+
+.loot-chest {
+  position: relative;
+  margin-left: auto;
+  padding: 0;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  filter: drop-shadow(3px 3px 0 var(--shadow-ink));
+}
+
+.loot-chest .sprite {
+  display: block;
+}
+
+.loot-chest:focus-visible {
+  outline: 2px dashed var(--accent);
+  outline-offset: 4px;
+}
+
+.loot-chest.is-shaking {
+  animation: chest-shake 0.4s ease;
+}
+
+.loot-chest.is-unlocked:not(.is-open) {
+  animation: chest-ready 1.2s ease-in-out infinite;
+}
+
+.loot-chest.is-open .sprite-chest {
+  background-position-x: calc(var(--fw) * -2 * var(--px) * 1px);
+}
+
+.loot-chest.is-opening .sprite-chest {
+  animation: chest-open 0.3s steps(2) forwards;
+}
+
+@keyframes chest-open {
+  from {
+    background-position-x: 0;
+  }
+  to {
+    background-position-x: calc(var(--fw) * -2 * var(--px) * 1px);
+  }
+}
+
+@keyframes chest-shake {
+  20%, 60% {
+    transform: translateX(-4px) rotate(-4deg);
+  }
+  40%, 80% {
+    transform: translateX(4px) rotate(4deg);
+  }
+}
+
+@keyframes chest-ready {
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.game-toast {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 600;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  max-width: min(360px, calc(100vw - 40px));
+  padding: 14px 18px 14px 14px;
+  color: var(--ink);
+  background: var(--cream);
+  border: 3px solid var(--ink);
+  border-radius: var(--radius);
+  box-shadow: 6px 6px 0 var(--shadow-ink);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(14px) rotate(-0.8deg);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+}
+
+.game-toast.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: rotate(-0.8deg);
+}
+
+.game-toast-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 58px;
+  height: 58px;
+  flex-shrink: 0;
+  background: var(--ink);
+  border-radius: 9px;
+}
+
+/* the toast's chest is always shown open */
+.game-toast .sprite-chest {
+  background-position-x: calc(var(--fw) * -2 * var(--px) * 1px);
+}
+
+.game-toast-title {
+  display: block;
+  margin-bottom: 3px;
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--rose-strong);
+}
+
+.game-toast-body {
+  display: block;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--ink-soft);
+}
+
+.game-toast-action {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 0 0 1px;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+  background: none;
+  border: 0;
+  border-bottom: 2px dashed var(--rose-strong);
+  cursor: pointer;
+}
+
+.game-toast-action:hover {
+  color: var(--rose-strong);
+}
+
+/* --- press-start --------------------------------------------- */
+body[data-fx~="press-start"] .project-card > .media-frame::before {
+  content: '\25B6  PRESS START';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-pixel);
+  font-size: 16px;
+  letter-spacing: 0.08em;
+  white-space: pre;
+  color: var(--cream);
+  text-shadow: 3px 3px 0 var(--shadow-ink);
+  background: rgba(20, 13, 8, 0.62);
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+body[data-fx~="press-start"] .project-card > .media-frame:hover::before,
+body[data-fx~="press-start"] .project-card > .media-frame:focus-visible::before {
+  opacity: 1;
+  animation: press-blink 1s steps(1) infinite;
+}
+
+@keyframes press-blink {
+  50% {
+    color: transparent;
+    text-shadow: none;
+  }
+}
+
+/* --- Game layer: small screens + reduced motion -------------- */
+@media (max-width: 900px) {
+  .player-one {
+    display: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .header-brand {
+    gap: 10px;
+  }
+
+  .patrol {
+    height: 56px;
+  }
+
+  .patrol .sprite {
+    --px: 2;
+  }
+
+  .patrol-walker {
+    animation-name: patrol-move-sm;
+  }
+}
+
+@keyframes patrol-move-sm {
+  to {
+    left: calc(100% - 56px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sprite,
+  .p1-tag,
+  .patrol-walker,
+  .patrol-facing,
+  .coin-hud.is-bump,
+  .loot-chest.is-unlocked:not(.is-open),
+  body[data-fx~="press-start"] .project-card > .media-frame:hover::before {
+    animation: none;
+  }
+
+  .coin.is-collected {
+    animation: none;
+    opacity: 0;
+  }
 }

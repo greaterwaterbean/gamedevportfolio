@@ -12,15 +12,23 @@
 <link rel="icon" type="image/svg+xml" href="img/site/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Caveat:wght@600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Caveat:wght@600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Silkscreen&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<!-- Game layer switches: delete a word from data-fx to veto that
+     animation (details in the GAME LAYER block of css/style.css). -->
+<body data-fx="player-one critters patrol coin-hunt press-start">
 <a class="skip-link" href="#main">Skip to content</a>
 
 <header class="site-header">
   <div class="wrap header-inner">
-    <a href="index.html" class="logo">LUKE<span>BONNIWELL</span></a>
+    <div class="header-brand">
+      <a href="index.html" class="logo">LUKE<span>BONNIWELL</span></a>
+      <button type="button" class="coin-hud fx-coin-hunt" data-coin-hud title="Coins found">
+        <span class="sprite sprite-coin" aria-hidden="true"></span>
+        <span><span data-coin-count>0</span>/<span data-coin-total>6</span></span>
+      </button>
+    </div>
     <nav class="site-nav" data-nav>
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
@@ -49,6 +57,10 @@
   <section class="hero" id="home">
     <div class="wrap hero-grid">
       <div class="photo-card">
+        <div class="player-one fx-player-one" aria-hidden="true">
+          <span class="p1-tag">P1</span>
+          <span class="sprite sprite-knight-idle"></span>
+        </div>
         <div class="media-frame" data-label="Add profile photo → img/site/profile.jpg (800×1000)">
           <picture>
             <source media="(max-width: 900px)" srcset="img/site/profile-mobile.png">
@@ -93,6 +105,7 @@
           <span class="terminal-dot yellow"></span>
           <span class="terminal-dot green"></span>
           <span class="terminal-title">luke@bonniwell</span>
+          <button type="button" class="coin coin-inline fx-coin-hunt" data-coin="terminal" aria-label="Hidden coin — collect it"><span class="sprite sprite-coin" aria-hidden="true"></span></button>
         </div>
         <div class="terminal-body">
           <span class="t-comment">// currently</span>
@@ -129,7 +142,7 @@
           </div>
           <div class="fact">
             <dt>Currently</dt>
-            <dd>Technology Intern at IndeVets · building two new games</dd>
+            <dd>Technology Intern at IndeVets · building two new games<button type="button" class="coin coin-corner fx-coin-hunt" data-coin="about" aria-label="Hidden coin — collect it"><span class="sprite sprite-coin" aria-hidden="true"></span></button></dd>
           </div>
         </dl>
       </div>
@@ -138,7 +151,7 @@
         <h3 class="about-sub-title">Tools of the Trade</h3>
         <div class="skills-grid">
           <div class="skill-group">
-            <h3>Languages</h3>
+            <h3><span class="inv-slot"><img src="img/icons/book.png" alt="" width="32" height="32"></span>Languages</h3>
             <div class="tag-row">
               <span class="tag">GDScript</span>
               <span class="tag">C#</span>
@@ -150,7 +163,7 @@
             </div>
           </div>
           <div class="skill-group">
-            <h3>Engines &amp; Frameworks</h3>
+            <h3><span class="inv-slot"><img src="img/icons/gamepad.png" alt="" width="32" height="32"></span>Engines &amp; Frameworks</h3>
             <div class="tag-row">
               <span class="tag">Unity</span>
               <span class="tag">Godot</span>
@@ -160,7 +173,7 @@
             </div>
           </div>
           <div class="skill-group">
-            <h3>Dev Tools &amp; Pipeline</h3>
+            <h3><span class="inv-slot"><img src="img/icons/wrench.png" alt="" width="32" height="32"></span>Dev Tools &amp; Pipeline</h3>
             <div class="tag-row">
               <span class="tag">Git / GitHub</span>
               <span class="tag">CI/CD</span>
@@ -170,7 +183,7 @@
             </div>
           </div>
           <div class="skill-group">
-            <h3>Design &amp; Production</h3>
+            <h3><span class="inv-slot"><img src="img/icons/pencil.png" alt="" width="32" height="32"></span>Design &amp; Production</h3>
             <div class="tag-row">
               <span class="tag">Level Design</span>
               <span class="tag">Enemy Design</span>
@@ -178,6 +191,7 @@
               <span class="tag">Playtesting</span>
               <span class="tag">Live Production</span>
             </div>
+            <button type="button" class="coin coin-corner fx-coin-hunt" data-coin="skills" aria-label="Hidden coin — collect it"><span class="sprite sprite-coin" aria-hidden="true"></span></button>
           </div>
         </div>
       </div>
@@ -190,6 +204,7 @@
             <span class="terminal-dot yellow"></span>
             <span class="terminal-dot green"></span>
             <span class="terminal-title">~/games</span>
+            <button type="button" class="coin coin-inline fx-coin-hunt" data-coin="games" aria-label="Hidden coin — collect it"><span class="sprite sprite-coin" aria-hidden="true"></span></button>
           </div>
           <div class="terminal-body">
             <div class="game-row">
@@ -227,6 +242,7 @@
       <div class="projects-grid">
 
         <article class="project-card">
+          <span class="critter critter-right fx-critters sprite sprite-chort" aria-hidden="true"></span>
           <a class="media-frame fit-contain" href="projects/tails-of-the-tower.html" data-label="Add card image → img/projects/tails-of-the-tower/card.png (1200×675)">
             <img data-placeholder src="img/projects/tails-of-the-tower/card.png" alt="Tails of the Tower key art">
           </a>
@@ -251,6 +267,7 @@
         </article>
 
         <article class="project-card">
+          <span class="critter critter-left fx-critters sprite sprite-necromancer" aria-hidden="true"></span>
           <a class="media-frame fit-contain" href="projects/whispers-through-the-halls.html" data-label="Add card image → img/projects/whispers-through-the-halls/card.png (1200×675)">
             <img data-placeholder src="img/projects/whispers-through-the-halls/card.png" alt="Whispers Through the Halls key art">
           </a>
@@ -271,9 +288,11 @@
               <a href="projects/whispers-through-the-halls.html">Devlog →</a>
             </div>
           </div>
+          <button type="button" class="coin coin-corner fx-coin-hunt" data-coin="projects" aria-label="Hidden coin — collect it"><span class="sprite sprite-coin" aria-hidden="true"></span></button>
         </article>
 
         <article class="project-card">
+          <span class="critter critter-right fx-critters sprite sprite-slug" aria-hidden="true"></span>
           <a class="media-frame fit-contain" href="projects/project-pet.html" data-label="Add card image → img/projects/project-pet/card.png (1200×675)">
             <img data-placeholder src="img/projects/project-pet/card.png" alt="Project P.E.T. key art">
           </a>
@@ -363,6 +382,7 @@
               <a href="https://startplaying.games/gm/gmluke" target="_blank" rel="noopener">Profile →</a>
             </div>
           </div>
+          <button type="button" class="coin coin-corner fx-coin-hunt" data-coin="experience" aria-label="Hidden coin — collect it"><span class="sprite sprite-coin" aria-hidden="true"></span></button>
         </article>
 
       </div>
@@ -494,6 +514,9 @@
           </div>
           <div class="availability">
             <span class="availability-dot"></span> Available September 2026
+            <button type="button" class="loot-chest fx-coin-hunt" data-chest aria-label="Treasure chest (locked)">
+              <span class="sprite sprite-chest" aria-hidden="true"></span>
+            </button>
           </div>
         </div>
       </div>
@@ -503,6 +526,9 @@
 </main>
 
 <footer class="site-footer">
+  <div class="patrol fx-patrol" aria-hidden="true">
+    <span class="patrol-walker"><span class="patrol-facing"><span class="sprite sprite-knight-run"></span></span></span>
+  </div>
   <div class="wrap footer-inner">
     <div class="footer-links">
       <a href="#home">Back to top</a>
@@ -513,6 +539,8 @@
     </div>
   </div>
 </footer>
+
+<div class="game-toast fx-coin-hunt" data-toast role="status" aria-live="polite"></div>
 
 <script src="js/main.js" defer></script>
 </body>

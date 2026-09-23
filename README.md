@@ -8,9 +8,10 @@ Static site, no build step, no framework. Plain HTML/CSS/JS so it deploys straig
 index.html                     homepage (about, skills, projects, devlog feed, contact)
 projects/                       one HTML file per game
 css/style.css                   the entire design system
-js/main.js                      nav toggle, missing-image fallback, scroll reveal, active nav highlight
+js/main.js                      nav toggle, missing-image fallback, active nav highlight, contact form, coin hunt
 img/projects/<slug>/            per-project images (see img/README.md for expected filenames)
 img/ui/, img/icons/             pixel-art UI assets (buttons, badges, icons) — see CREDITS.md
+img/sprites/                    animated pixel sprites for the homepage game layer — see CREDITS.md
 img/site/favicon.svg            tab icon
 resume/                         drop your resume PDF here (see resume/README.md)
 credits.html, CREDITS.md        attribution for the UI asset packs used
@@ -19,6 +20,20 @@ credits.html, CREDITS.md        attribution for the UI asset packs used
 ## Design system
 
 Dark warm background with hand-drawn "pinned to a corkboard" cream cards, hard offset pixel-shadows on buttons/badges, and a hand-lettered accent font (Caveat) — built around Crusenho's free itch.io UI packs. Colors, buttons, badges, and card styling all live in `css/style.css` as CSS custom properties at the top of the file if you want to retheme.
+
+### Game layer
+
+The homepage also carries a layer of animated pixel sprites from 0x72's CC0 DungeonTileset II (strips in `img/sprites/`). Each piece is switched on by a word in `<body data-fx="...">` in `index.html`; delete a word to turn that piece off:
+
+| Word | What it adds |
+| --- | --- |
+| `player-one` | Knight with a bobbing "P1" tag standing on the hero photo card |
+| `critters` | Idle monsters perched on the three project cards |
+| `patrol` | Knight running back and forth along the footer |
+| `coin-hunt` | 6 coins tucked into cards, a header counter, and a chest in Contact that unlocks when all 6 are found (progress saved in `localStorage`; click the counter to reset) |
+| `press-start` | "PRESS START" over project key art on hover |
+
+Everything respects `prefers-reduced-motion`. The CSS lives in the `GAME LAYER` block at the bottom of `css/style.css`; the coin hunt logic is at the bottom of `js/main.js`.
 
 ## Running it locally
 
