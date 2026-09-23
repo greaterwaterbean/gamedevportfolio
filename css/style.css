@@ -1568,9 +1568,9 @@ button {
   }
 }
 
-/* The full nav plus the coin counter needs ~930px, so the menu
-   collapses into the toggle below 960px. */
-@media (max-width: 960px) {
+/* The full nav (with Devlog) plus the coin counter needs ~980px,
+   so the menu collapses into the toggle at 1024px and below. */
+@media (max-width: 1024px) {
   .nav-toggle {
     display: flex;
   }
@@ -1634,20 +1634,21 @@ button {
 
 /* ============================================================
    DEVLOG MODE TOGGLE
-   Portfolio-only mode: every devlog nav link, the hero "Read the
-   Devlog" CTA, the homepage Devlog feed section, and each
-   project page's own Devlog section are tagged .devlog-toggle in
-   the HTML and hidden by this one rule.
+   Every devlog nav link, the hero "Read the Devlog" CTA, the
+   homepage Devlog feed section, and each project page's own
+   Devlog section are tagged .devlog-toggle in the HTML.
 
-   To bring the devlog back once it's ready to finish and show:
-   delete (or comment out) this rule. Section numbering is now
-   About 01 / Projects 02 / Experience 03 / Contact 04, so the
-   devlog feed no longer owns an eyebrow number — renumber only
-   if you re-insert it into the flow.
+   Devlog is currently ON. To go back to portfolio-only mode,
+   uncomment the rule below and renumber the homepage eyebrows
+   (with the devlog showing: About 01 / Projects 02 /
+   Experience 03 / Devlog 04 / Contact 05; without it, Contact
+   goes back to 04).
    ============================================================ */
+/*
 .devlog-toggle {
   display: none !important;
 }
+*/
 
 /* ============================================================
    SKILLS ANCHOR
@@ -1926,7 +1927,7 @@ button {
   gap: 10px;
 }
 
-@media (max-width: 960px) {
+@media (max-width: 1024px) {
   .nav-actions {
     flex-wrap: wrap;
     margin-top: 14px;
