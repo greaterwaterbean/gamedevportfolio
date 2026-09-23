@@ -14,10 +14,34 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Caveat:wght@600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Silkscreen&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/game.css">
+<script>
+  // boot-screen: show the loading screen once per browser session
+  try {
+    if (sessionStorage.getItem('lb-booted')) document.documentElement.classList.add('boot-seen');
+    sessionStorage.setItem('lb-booted', '1');
+  } catch (e) {
+    document.documentElement.classList.add('boot-seen');
+  }
+</script>
 </head>
-<!-- Game layer switches: delete a word from data-fx to veto that
-     animation (details in the GAME LAYER block of css/style.css). -->
-<body data-fx="player-one critters patrol coin-hunt press-start">
+<!-- Game layer switches: delete a word from data-fx to veto that piece.
+     What each word does: README.md ("Game layer") and css/game.css. -->
+<body data-fx="
+  player-one critters patrol coin-hunt press-start
+  boot-screen sparkles typewriter p1-emotes idle-zzz flyby
+  menu-cursor xp-bar sfx achievements click-fx cursor konami
+  section-flags inv-shine nap-cat butterflies crt shipped-flags
+  critter-react combat pet-snow rat-run quest-stamps d20
+  fountains crow campfire lever
+">
+<div class="boot-screen fx-boot-screen" data-boot aria-hidden="true">
+  <div class="boot-inner">
+    <span class="boot-title">LUKE<span>BONNIWELL</span></span>
+    <div class="boot-bar"><span class="boot-fill"></span><span class="sprite sprite-knight-run boot-runner"></span></div>
+    <span class="boot-hint">LOADING...</span>
+  </div>
+</div>
 <a class="skip-link" href="#main">Skip to content</a>
 
 <header class="site-header">
@@ -50,6 +74,10 @@
       <span></span><span></span><span></span>
     </button>
   </div>
+  <div class="hud-tabs" data-hud-tabs>
+    <button type="button" class="hud-tab fx-sfx" data-sfx-toggle aria-pressed="false" title="Sound effects">SFX <span data-sfx-state>OFF</span></button>
+    <button type="button" class="hud-tab fx-achievements" data-ach-btn title="Achievements"><img src="img/icons/trophy.png" alt="" width="14" height="14"><span data-ach-count>0</span>/<span data-ach-total>0</span></button>
+  </div>
 </header>
 
 <main id="main">
@@ -57,6 +85,8 @@
   <section class="hero" id="home">
     <div class="wrap hero-grid">
       <div class="photo-card">
+        <span class="sprite sprite-twinkle glint glint-a fx-sparkles" aria-hidden="true"></span>
+        <span class="sprite sprite-twinkle glint glint-b fx-sparkles" aria-hidden="true"></span>
         <div class="player-one fx-player-one" aria-hidden="true">
           <span class="p1-tag">P1</span>
           <span class="sprite sprite-knight-idle"></span>
@@ -75,11 +105,11 @@
 
       <div class="hero-copy">
         <span class="hero-kicker">Game Programmer &amp; Designer</span>
-        <h1>Luke Bonniwell</h1>
+        <h1>Luke Bonniwell<span class="glint-anchor fx-sparkles" aria-hidden="true"><span class="sprite sprite-twinkle glint"></span></span></h1>
         <p class="hero-role">B.A. Computer Science × Game Studies — University of Delaware, 2026</p>
         <p class="hero-lede">Programmer, level designer, and narrative lead who ships playable builds, not just prototypes.</p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="#projects">View Projects</a>
+          <a class="btn btn-primary" href="#projects">View Projects<span class="sprite sprite-twinkle glint fx-sparkles" aria-hidden="true"></span></a>
           <a class="btn btn-ghost" href="https://www.linkedin.com/in/luke-bonniwell" target="_blank" rel="noopener">
             <img src="img/icons/linkedin.svg" alt="" width="17" height="17">
             LinkedIn
@@ -109,7 +139,7 @@
         </div>
         <div class="terminal-body">
           <span class="t-comment">// currently</span>
-          <span class="t-prompt">&gt;</span> shipping games, writing code, designing narratives, building levels, testing game mechanics, managing teams<span class="terminal-cursor"></span>
+          <span class="t-prompt">&gt;</span><span class="t-type"> shipping games, writing code, designing narratives, building levels, testing game mechanics, managing teams</span><span class="terminal-cursor"></span>
         </div>
       </div>
     </div>
@@ -119,7 +149,7 @@
     <div class="wrap">
       <div class="about-grid">
         <div>
-          <span class="eyebrow"><span class="eyebrow-num">01</span> About</span>
+          <span class="eyebrow"><span class="eyebrow-num">01</span> About<span class="sprite sprite-flag-red section-flag fx-section-flags" aria-hidden="true"></span></span>
           <h2>Programmer first. Storyteller always.</h2>
           <div class="prose">
             <p>I'm a Computer Science and Game Studies double major with an English minor who's happiest owning both sides of a game: the systems that run it and the story that justifies them. On "Tails of the Tower," I was one of nine programmers in a 24-student capstone studio, building enemy and level systems while also unofficially running the team's Git workflow — reviewing every commit that shipped. I build with AI coding tools like Claude Code close at hand — for drafts, boilerplate, and project structure, inside a normal branch and code review workflow — but the code that ships is still mine to write and answer for.</p>
@@ -130,7 +160,7 @@
         <dl class="fact-list">
           <div class="fact">
             <dt>Based in</dt>
-            <dd>Philadelphia, PA</dd>
+            <dd>Philadelphia, PA<button type="button" class="nap-cat fx-nap-cat" data-nap-cat aria-label="Sleeping cat: pet it"><span class="sprite sprite-cat-sleep"></span></button></dd>
           </div>
           <div class="fact">
             <dt>Focus</dt>
@@ -149,6 +179,7 @@
 
       <div class="about-sub" id="skills">
         <h3 class="about-sub-title">Tools of the Trade</h3>
+        <span class="butterflies fx-butterflies" aria-hidden="true"><span class="bfly bfly-a"><span class="sprite sprite-butterfly"></span></span><span class="bfly bfly-b"><span class="sprite sprite-butterfly"></span></span></span>
         <div class="skills-grid">
           <div class="skill-group">
             <h3><span class="inv-slot"><img src="img/icons/book.png" alt="" width="32" height="32"></span>Languages</h3>
@@ -234,7 +265,7 @@
   <section class="section snap-section" id="projects">
     <div class="wrap">
       <div class="section-head">
-        <span class="eyebrow"><span class="eyebrow-num">02</span> Projects</span>
+        <span class="eyebrow"><span class="eyebrow-num">02</span> Projects<span class="sprite sprite-flag-yellow section-flag fx-section-flags" aria-hidden="true"></span></span>
         <h2>Shipped &amp; in development</h2>
         <p>Every project links out to a full write-up covering how it was actually built.</p>
       </div>
@@ -295,6 +326,7 @@
           <span class="critter critter-right fx-critters sprite sprite-slug" aria-hidden="true"></span>
           <a class="media-frame fit-contain" href="projects/project-pet.html" data-label="Add card image → img/projects/project-pet/card.png (1200×675)">
             <img data-placeholder src="img/projects/project-pet/card.png" alt="Project P.E.T. key art">
+            <span class="snowfall fx-pet-snow" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
           </a>
           <div class="project-card-body">
             <div class="project-card-top">
@@ -322,7 +354,7 @@
   <section class="section snap-section" id="experience">
     <div class="wrap">
       <div class="section-head">
-        <span class="eyebrow"><span class="eyebrow-num">03</span> Experience</span>
+        <span class="eyebrow"><span class="eyebrow-num">03</span> Experience<span class="sprite sprite-flag-green section-flag fx-section-flags" aria-hidden="true"></span></span>
         <h2>Where the work happened</h2>
         <p>Three roles I've held alongside the games: shipping product code, running a live broadcast, and designing systems for a table.</p>
       </div>
@@ -344,6 +376,7 @@
               <span class="tag">Agile</span>
             </div>
           </div>
+          <span class="quest-stamp fx-quest-stamps" aria-hidden="true">QUEST<br>COMPLETE</span>
         </article>
 
         <article class="project-card">
@@ -361,6 +394,7 @@
               <span class="tag">Premiere Pro</span>
             </div>
           </div>
+          <span class="quest-stamp fx-quest-stamps" aria-hidden="true">QUEST<br>COMPLETE</span>
         </article>
 
         <article class="project-card">
@@ -380,9 +414,11 @@
             </div>
             <div class="project-card-links">
               <a href="https://startplaying.games/gm/gmluke" target="_blank" rel="noopener">Profile →</a>
+              <button type="button" class="d20 fx-d20" data-d20 aria-label="Roll a d20"><img src="img/sprites/d20.png" alt="" width="40" height="40"><span class="d20-result" data-d20-result aria-live="polite"></span></button>
             </div>
           </div>
           <button type="button" class="coin coin-corner fx-coin-hunt" data-coin="experience" aria-label="Hidden coin — collect it"><span class="sprite sprite-coin" aria-hidden="true"></span></button>
+          <span class="quest-stamp is-active fx-quest-stamps" aria-hidden="true">QUEST<br>ACTIVE</span>
         </article>
 
       </div>
@@ -391,13 +427,16 @@
 
   <section class="section snap-section devlog-toggle" id="devlog">
     <div class="wrap">
-      <div class="devlog-book" aria-hidden="true">
+      <div class="devlog-book">
+        <span class="fountain fountain-l fx-fountains" aria-hidden="true"><span class="sprite sprite-fountain"></span></span>
+        <span class="fountain fountain-r fx-fountains" aria-hidden="true"><span class="sprite sprite-fountain"></span></span>
         <img class="book-cover" src="img/ui/book-cover.png" alt="">
         <img class="book-page-left" src="img/ui/book-page-left.png" alt="">
         <img class="book-page-right" src="img/ui/book-page-right.png" alt="">
+        <button type="button" class="crow fx-crow" data-crow aria-label="Crow on the logbook: startle it"><span class="sprite sprite-crow-idle"></span></button>
       </div>
       <div class="section-head" style="margin: 0 auto 48px; text-align: center;">
-        <span class="eyebrow" style="justify-content: center;"><span class="eyebrow-num">04</span> Devlog</span>
+        <span class="eyebrow" style="justify-content: center;"><span class="eyebrow-num">04</span> Devlog<span class="sprite sprite-flag-blue section-flag fx-section-flags" aria-hidden="true"></span></span>
         <h2>Latest from the logbook</h2>
         <p style="margin: 0 auto;">Running notes on what I'm building right now, pulled from each project's full devlog.</p>
       </div>
@@ -476,7 +515,7 @@
   <section class="section snap-section" id="contact">
     <div class="wrap">
       <div class="section-head">
-        <span class="eyebrow"><span class="eyebrow-num">05</span> Contact</span>
+        <span class="eyebrow"><span class="eyebrow-num">05</span> Contact<button type="button" class="campfire fx-campfire" data-campfire aria-label="Save point campfire"><span class="campfire-label">SAVE POINT</span><span class="campfire-fire"><span class="sprite sprite-fire"></span><span class="sprite sprite-fire"></span></span><img class="campfire-logs" src="img/sprites/logs.png" alt="" width="32" height="32"></button></span>
         <h2>Let's build something.</h2>
         <p>Looking for programming, design, or hybrid roles in games. Open to full-time, contract, and internship conversations — reach out any of these ways.</p>
       </div>
@@ -553,17 +592,19 @@
   </div>
   <div class="wrap footer-inner">
     <div class="footer-links">
+      <button type="button" class="lever fx-lever" data-lever aria-label="Pull the lever: back to top"><span class="sprite sprite-lever"></span></button>
       <a href="#home">Back to top</a>
       <a href="devlog/how-i-use-ai/">How I Use AI</a>
       <a href="https://github.com/Lukebonn" target="_blank" rel="noopener">GitHub</a>
       <a href="https://www.linkedin.com/in/luke-bonniwell" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="credits.html">UI Assets &amp; Credits</a>
+      <a href="credits.html">Assets &amp; Credits</a>
     </div>
   </div>
 </footer>
 
-<div class="game-toast fx-coin-hunt" data-toast role="status" aria-live="polite"></div>
+<div class="game-toast" data-toast role="status" aria-live="polite"></div>
 
 <script src="js/main.js" defer></script>
+<script src="js/game.js" defer></script>
 </body>
 </html>

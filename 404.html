@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark">
+<meta name="robots" content="noindex">
+<title>Game Over — Luke Bonniwell</title>
+<!-- GitHub Pages serves this for any missing URL, at any depth, so every
+     path here is root-relative. -->
+<link rel="icon" type="image/svg+xml" href="/img/site/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Silkscreen&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/game.css">
+</head>
+<body data-fx="cursor click-fx">
+<main id="main" class="game-over">
+  <div class="game-over-scene" aria-hidden="true">
+    <span class="sprite sprite-knight-hit game-over-knight"></span>
+    <span class="sprite sprite-chort game-over-chort"></span>
+  </div>
+  <h1 class="game-over-title">GAME OVER</h1>
+  <p class="game-over-copy">This page doesn't exist. The link may be broken, or the page moved.</p>
+  <p class="game-over-continue" data-continue>CONTINUE? <span data-countdown>9</span></p>
+  <div class="game-over-actions">
+    <a class="btn btn-primary" href="/">&#9654; Yes, back to the start</a>
+    <a class="btn btn-ghost" href="/#projects">Level select (projects)</a>
+  </div>
+</main>
+
+<script>
+  // Arcade-style continue countdown back to the homepage; any input stops it.
+  (function () {
+    var label = document.querySelector('[data-continue]');
+    var count = document.querySelector('[data-countdown]');
+    var n = 9;
+    var timer = setInterval(function () {
+      n -= 1;
+      count.textContent = n;
+      if (n <= 0) {
+        clearInterval(timer);
+        window.location.href = '/';
+      }
+    }, 1000);
+    var stop = function () {
+      clearInterval(timer);
+      label.textContent = 'CONTINUE?';
+      ['keydown', 'pointerdown', 'wheel', 'touchstart'].forEach(function (type) {
+        removeEventListener(type, stop);
+      });
+    };
+    ['keydown', 'pointerdown', 'wheel', 'touchstart'].forEach(function (type) {
+      addEventListener(type, stop, { passive: true });
+    });
+  })();
+</script>
+<script src="/js/game.js" defer></script>
+</body>
+</html>
