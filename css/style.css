@@ -1629,9 +1629,317 @@ button {
    the HTML and hidden by this one rule.
 
    To bring the devlog back once it's ready to finish and show:
-   delete (or comment out) this rule, and change the Contact
-   eyebrow number in index.html back from 03 to 04.
+   delete (or comment out) this rule. Section numbering is now
+   About 01 / Projects 02 / Experience 03 / Contact 04, so the
+   devlog feed no longer owns an eyebrow number — renumber only
+   if you re-insert it into the flow.
    ============================================================ */
 .devlog-toggle {
   display: none !important;
+}
+
+/* ============================================================
+   SKILLS ANCHOR
+   "Skills" nav link jumps to the "Tools of the Trade" block
+   inside #about; keep it clear of the sticky header.
+   ============================================================ */
+#skills {
+  scroll-margin-top: calc(var(--header-h) + 24px);
+}
+
+/* ============================================================
+   EXPERIENCE CARDS
+   Reuses .projects-grid / .project-card. These cards carry no
+   media frame, so tighten the top padding the image would fill.
+   ============================================================ */
+#experience .project-card {
+  padding-top: 20px;
+}
+
+#experience .project-card-body {
+  padding-top: 6px;
+}
+
+#experience .project-card-top {
+  align-items: flex-start;
+}
+
+#experience .project-card-tools {
+  white-space: nowrap;
+  padding-top: 3px;
+}
+
+/* ============================================================
+   CONTACT FORM + QUICK LINKS
+   ============================================================ */
+.contact-form-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 32px;
+  align-items: stretch;
+}
+
+.contact-card {
+  position: relative;
+  background: var(--cream);
+  border: 3px solid var(--ink);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  box-shadow: 7px 7px 0 var(--shadow-ink);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  transform: rotate(-0.6deg);
+}
+
+.contact-card-alt {
+  transform: rotate(0.7deg);
+}
+
+.contact-card::before {
+  content: '';
+  position: absolute;
+  top: -14px;
+  left: 32px;
+  width: 66px;
+  height: 24px;
+  background: var(--accent);
+  opacity: 0.9;
+  transform: rotate(-4deg);
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.35);
+  border-radius: 2px;
+}
+
+.contact-card-alt::before {
+  background: var(--rose);
+  left: auto;
+  right: 32px;
+  transform: rotate(5deg);
+}
+
+.contact-card-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.contact-card-head h3 {
+  font-family: var(--font-mono);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.contact-card-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  border: 2px solid var(--ink);
+  background: linear-gradient(135deg, var(--accent), var(--rose));
+  flex-shrink: 0;
+}
+
+.contact-card-icon img {
+  width: 20px;
+  height: 20px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.form-label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--rose-strong);
+  text-align: center;
+}
+
+.contact-card input,
+.contact-card textarea {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--ink);
+  background: #fff;
+  border: 2px solid var(--ink);
+  border-radius: 10px;
+  padding: 12px 14px;
+  width: 100%;
+  resize: vertical;
+  transition: box-shadow 0.12s ease, border-color 0.12s ease;
+}
+
+.contact-card input::placeholder,
+.contact-card textarea::placeholder {
+  color: var(--ink-soft);
+  opacity: 0.7;
+}
+
+.contact-card input:focus,
+.contact-card textarea:focus {
+  outline: none;
+  border-color: var(--accent-strong);
+  box-shadow: 3px 3px 0 var(--shadow-ink);
+}
+
+.form-foot {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: auto;
+}
+
+.form-note {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-faint);
+}
+
+.quick-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.quick-link {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  text-align: left;
+  background: #fff;
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  box-shadow: 3px 3px 0 var(--shadow-ink);
+  cursor: pointer;
+  font-family: inherit;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.quick-link:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 var(--shadow-ink);
+}
+
+.quick-link-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  border: 2px solid var(--ink);
+  background: linear-gradient(135deg, var(--accent), var(--rose));
+  flex-shrink: 0;
+}
+
+.quick-link-icon img {
+  width: 18px;
+  height: 18px;
+}
+
+.quick-link-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.quick-link-text strong {
+  font-family: var(--font-display);
+  font-size: 15px;
+  color: var(--ink);
+}
+
+.quick-link-text small {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+
+.availability {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: auto;
+  padding-top: 4px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+.availability-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #7cb87c;
+  box-shadow: 0 0 0 3px rgba(124, 184, 124, 0.25);
+  flex-shrink: 0;
+}
+
+@media (max-width: 900px) {
+  .contact-form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================
+   NAV ACTION GROUP
+   Keeps the text links on the nav's 26px rhythm while pulling
+   the LinkedIn / GitHub / Resume buttons tight together.
+   ============================================================ */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+@media (max-width: 720px) {
+  .nav-actions {
+    flex-wrap: wrap;
+    margin-top: 14px;
+  }
+
+  .nav-actions .btn {
+    margin-top: 0;
+  }
+}
+
+/* ============================================================
+   TOP GM BADGE  (Experience — Dungeon Master card)
+   Sits on its own line under the card title so all three
+   Experience titles stay aligned.
+   ============================================================ */
+.badge-topgm {
+  align-self: flex-start;
+  width: max-content;
+  max-width: 100%;
+  margin-top: -2px;
+  background: #eaf2fb;
+  color: #274a6b;
+}
+
+.badge-topgm::before {
+  background-image: url(../img/icons/topgm.svg);
 }

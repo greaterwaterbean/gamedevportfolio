@@ -53,4 +53,69 @@
   document.querySelectorAll('[data-year]').forEach(function (el) {
     el.textContent = new Date().getFullYear();
   });
+
+  // Contact form: submit to Formspree over fetch so the visitor stays on the page.
+  var contactForm = document.querySelector('[data-contact-form]');
+  if (contactForm) {
+    var note = contactForm.querySelector('[data-form-note]');
+    var submitBtn = contactForm.querySelector('button[type="submit"]');
+
+    contactForm.addEventListener('submit', function (e) {
+      if (!window.fetch) return; // no fetch: let the native POST to Formspree happen
+      e.preventDefault();
+      if (note) note.textContent = 'Sending…';
+      if (submitBtn) submitBtn.disabled = true;
+
+      fetch(contactForm.action, {
+        method: 'POST',
+        body: new FormData(contactForm),
+        headers: { Accept: 'application/json' }
+      })
+        .then(function (res) {
+          if (res.ok) {
+            contactForm.reset();
+            if (note) note.textContent = "Thanks — your note is in. I'll be in touch.";
+          } else {
+            return res.json().then(function (data) {
+              var msg =
+                data && data.errors && data.errors.length
+                  ? data.errors.map(function (x) { return x.message; }).join(', ')
+                  : 'Something went wrong. Email me directly at lukebonniwell@gmail.com.';
+              if (note) note.textContent = msg;
+              if (submitBtn) submitBtn.disabled = false;
+            });
+          }
+        })
+        .catch(function () {
+          if (note) note.textContent =
+            "Couldn't send just now. Email me directly at lukebonniwell@gmail.com.";
+          if (submitBtn) submitBtn.disabled = false;
+        });
+    });
+  }
+
+  // Quick links: copy the email address to the clipboard (fall back to a mail compose).
+  var copyBtn = document.querySelector('[data-copy-email]');
+  if (copyBtn) {
+    var copyLabel = copyBtn.querySelector('[data-copy-label]');
+    var copyDefault = copyLabel ? copyLabel.textContent : '';
+    copyBtn.addEventListener('click', function () {
+      var address = copyBtn.getAttribute('data-email');
+      var flash = function (msg) {
+        if (!copyLabel) return;
+        copyLabel.textContent = msg;
+        setTimeout(function () {
+          copyLabel.textContent = copyDefault;
+        }, 2000);
+      };
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(address).then(
+          function () { flash('copied to clipboard'); },
+          function () { window.location.href = 'mailto:' + address; }
+        );
+      } else {
+        window.location.href = 'mailto:' + address;
+      }
+    });
+  }
 })();
