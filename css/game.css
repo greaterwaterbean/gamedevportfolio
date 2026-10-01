@@ -868,6 +868,7 @@ body[data-fx~="shipped-flags"] .game-status.shipped {
 
 body[data-fx~="shipped-flags"] .game-row:nth-child(2) .game-status { animation-delay: -0.25s; }
 body[data-fx~="shipped-flags"] .game-row:nth-child(3) .game-status { animation-delay: -0.5s; }
+body[data-fx~="shipped-flags"] .game-row:nth-child(4) .game-status { animation-delay: -0.35s; }
 
 /* --- quest-stamps on Experience cards ------------------------ */
 .quest-stamp {

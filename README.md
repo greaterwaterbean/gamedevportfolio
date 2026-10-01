@@ -87,13 +87,17 @@ Then visit `http://localhost:8000`.
 - Every project page has paragraphs that literally say "write about X here" inside the prose. Search each file for those and replace them with real writeups.
 - `resume/README.md` explains where to put your resume PDF.
 
-## Adding a 7th project
+## Adding a project
 
-1. Copy `projects/in-progress-2.html` (or any existing project page) to `projects/your-new-game.html`.
-2. Find-and-replace the title, tagline, meta facts, links, and devlog entries.
+The Projects section has two tiers. The three big cards in the grid are the flagship projects; everything else goes in the **Side Quests** list underneath them, as a compact row with a thumbnail, one line of text, and Play / Code / Write-up links.
+
+1. Copy `projects/the-last-alchemist.html` (or any existing project page) to `projects/your-new-game.html`.
+2. Find-and-replace the title, tagline, meta facts, links, and body text.
 3. Make an `img/projects/your-new-game/` folder and drop in images using the naming pattern in `img/README.md`.
-4. Add a new `<article class="project-card">` block to the projects grid in `index.html` (copy an existing one as a starting point).
+4. Copy The Last Alchemist's `<li class="side-quest">` row in the Side Quests list in `index.html`. For a project that hasn't shipped, change the status text and add `is-progress` to `.side-quest-status`. If it has shipped, also add a row to the Games Made list in About.
 5. Update the `next-project` link at the bottom of whichever page should now point to the new one, and point the new page's `next-project` link at whatever came after it.
+
+Promoting a project to a flagship card means adding an `<article class="project-card">` to the projects grid instead; the critters, combat, and press-start game-layer pieces are built around exactly three cards there.
 
 Adding a new devlog entry to an existing project: duplicate one `<article class="devlog-entry">...</article>` block inside that project's `#devlog` section, give it a unique `id` (e.g. `log-2026-09-01`), and fill it in. Newest entries go at the top.
 
