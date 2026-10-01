@@ -1292,6 +1292,10 @@ button {
   margin-top: 6px;
 }
 
+.project-body .prose ul + h2 {
+  margin-top: 30px;
+}
+
 .project-body .prose li {
   position: relative;
   padding-left: 20px;
@@ -1674,6 +1678,126 @@ button {
 
 #experience .project-card-top {
   align-items: flex-start;
+}
+
+/* ============================================================
+   SIDE QUESTS
+   Smaller projects (jams, experiments) listed as compact rows
+   under the three main project cards. Each row is one <li> in
+   index.html; add .is-progress to .side-quest-status for a
+   project that hasn't shipped yet.
+   ============================================================ */
+.side-quests {
+  margin-top: 80px;
+}
+
+.side-quest-list {
+  border-top: 1px dashed var(--border);
+}
+
+.side-quest {
+  display: grid;
+  grid-template-columns: 136px 1fr auto;
+  align-items: center;
+  gap: 26px;
+  padding: 22px 0;
+  border-bottom: 1px dashed var(--border);
+}
+
+.side-quest-thumb {
+  display: block;
+  aspect-ratio: 181 / 144;
+  background: var(--shadow-ink);
+  border: 3px solid var(--ink);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  box-shadow: 4px 4px 0 var(--shadow-ink);
+  transform: rotate(-1.5deg);
+  transition: transform 0.15s ease;
+}
+
+.side-quest-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.side-quest:hover .side-quest-thumb {
+  transform: rotate(0deg) translateY(-2px);
+}
+
+.side-quest-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 14px;
+  margin-bottom: 6px;
+}
+
+.side-quest h4 {
+  font-size: 19px;
+  color: var(--text);
+}
+
+.side-quest h4 a:hover {
+  color: var(--accent);
+}
+
+.side-quest-meta {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-faint);
+}
+
+.side-quest-status {
+  color: var(--accent);
+}
+
+.side-quest-status.is-progress {
+  color: var(--rose);
+}
+
+.side-quest p {
+  margin: 0;
+  font-size: 14.5px;
+  max-width: 620px;
+}
+
+.side-quest-links {
+  display: flex;
+  gap: 16px;
+  font-family: var(--font-display);
+  font-size: 13.5px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.side-quest-links a {
+  color: var(--accent);
+  border-bottom: 2px dashed transparent;
+  padding-bottom: 1px;
+}
+
+.side-quest-links a:hover {
+  color: var(--text);
+  border-color: var(--text);
+}
+
+@media (max-width: 720px) {
+  .side-quests {
+    margin-top: 64px;
+  }
+
+  .side-quest {
+    grid-template-columns: 96px 1fr;
+    align-items: start;
+    gap: 14px 18px;
+  }
+
+  .side-quest-links {
+    grid-column: 2;
+  }
 }
 
 #experience .project-card-tools {
