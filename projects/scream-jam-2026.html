@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark">
+<title>Scream Jam 2026 — Luke Bonniwell</title>
+<meta name="description" content="Design write-up for a 7-day Scream Jam 2026 horror game: three design iterations, from a grave-robbing loop to a one-enemy, one-map GDD.">
+<meta property="og:title" content="Scream Jam 2026 — Luke Bonniwell">
+<meta property="og:description" content="Three design iterations for a 7-day horror jam game, from a grave-robbing loop to a one-enemy, one-map GDD.">
+<meta property="og:type" content="article">
+<link rel="icon" type="image/svg+xml" href="../img/site/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Caveat:wght@600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a href="../index.html" class="logo">LUKE<span>BONNIWELL</span></a>
+    <nav class="site-nav" data-nav>
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#projects">Projects</a>
+      <a class="devlog-toggle" href="../index.html#devlog">Devlog</a>
+      <a href="../index.html#contact">Contact</a>
+      <a class="btn btn-ghost btn-icon" href="https://github.com/Lukebonn" target="_blank" rel="noopener" title="GitHub">
+        <img src="../img/icons/github.png" alt="GitHub" width="20" height="20">
+      </a>
+      <a class="btn btn-ghost" href="../resume/Luke-Bonniwell-Resume.pdf" target="_blank" rel="noopener">Resume</a>
+    </nav>
+    <button class="nav-toggle" data-nav-toggle aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="project-hero">
+    <div class="wrap">
+      <a class="breadcrumb" href="../index.html#projects">← All Projects</a>
+      <div class="project-hero-top">
+        <span class="badge badge-progress">In Progress</span>
+        <span class="project-card-tools">Game Design · Scream Jam 2026</span>
+      </div>
+      <h1>Scream Jam 2026</h1>
+      <p class="project-tagline">A first-person horror game about the last human on a frozen, sunless Earth, designed for a 7-day jam. This page is the design story: three iterations, and what got cut to make it fit.</p>
+
+      <a class="media-frame project-cover" href="#" data-label="Add cover image → img/projects/scream-jam-2026/cover.png (1920×1080)">
+        <img data-placeholder src="../img/projects/scream-jam-2026/cover.png" alt="Scream Jam 2026 game key art">
+      </a>
+
+      <div class="project-meta-row">
+        <div class="fact">
+          <dt>Role</dt>
+          <dd>Designer</dd>
+        </div>
+        <div class="fact">
+          <dt>Team</dt>
+          <dd>TBD</dd>
+        </div>
+        <div class="fact">
+          <dt>Engine</dt>
+          <dd>TBD</dd>
+        </div>
+        <div class="fact">
+          <dt>Timeline</dt>
+          <dd>7 days · Scream Jam, Oct 16–23, 2026</dd>
+        </div>
+      </div>
+
+      <div class="project-links">
+        <a class="btn btn-ghost" href="https://itch.io/jam/scream-jam-2026" target="_blank" rel="noopener">Scream Jam 2026 on itch.io</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="border-top: none; padding-top: 0;">
+    <div class="wrap">
+      <div class="project-body">
+        <div class="prose">
+          <p class="placeholder-note">Draft. Before publishing (after the Oct 23 deadline): replace "Scream Jam 2026" with the game's title, add the itch link as a "Play on itch.io" button, add a cover image and screenshots, and fill in Team and Engine above.</p>
+
+          <h2>Overview</h2>
+          <p>Scream Jam is a 7-day, horror-themed game jam on itch.io. Our entry puts the player in the shoes of the last human alive, long after the sun has gone out. The surface is frozen and overrun by monsters that can only survive in the cold, and the player has to cross it between five warm habitats, finishing a checklist of errands before the cold or the creature gets them.</p>
+
+          <h2>My Role</h2>
+          <p>I'm the designer. I wrote the game's design across three documents, from a first pitch to the GDD the team is building from, including the hand-drawn map of the playable space.</p>
+          <p class="placeholder-note">Confirm the role line, and add anything else you're doing on the team (programming, writing, etc.).</p>
+
+          <h2>The Loop</h2>
+          <ul>
+            <li>Plan a route between habitats. Each one is a warm, safe room with fresh batteries.</li>
+            <li>Cross the frozen ruins while your warmth meter drains, using a battery-powered radar to spot the creature.</li>
+            <li>Carry items between habitats to finish the checklist: carrots to the pigs, a corpse to the biodiesel plant, oil to the generator, flowers to a grave.</li>
+            <li>Get back to the first habitat alive.</li>
+          </ul>
+        </div>
+
+        <aside>
+          <div class="side-card">
+            <h3>Influences</h3>
+            <div class="tag-row">
+              <span class="tag">GTFO</span>
+              <span class="tag">Lethal Company</span>
+              <span class="tag">Pac-Man</span>
+              <span class="tag">FNAF</span>
+              <span class="tag">Amnesia</span>
+              <span class="tag">Dead by Daylight</span>
+              <span class="tag">The Thing</span>
+            </div>
+          </div>
+          <div class="side-card">
+            <h3>Jam</h3>
+            <p style="margin:0; font-size:14.5px;">Scream Jam 2026 on itch.io: horror-themed, 7 days, Oct 16–23. Designed in three Google Docs iterations plus a hand-drawn map and a reference board.</p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="design">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Design Log</span>
+        <h2>From pitch to GDD</h2>
+        <p>Three documents, each one smaller and more specific than the last.</p>
+      </div>
+
+      <article class="devlog-entry" id="iteration-1">
+        <div class="devlog-entry-head">
+          <h3>Gravedigger</h3>
+          <span class="devlog-entry-date">Iteration 1</span>
+        </div>
+        <div class="prose">
+          <p>The first pitch was a first-person grave robber. Dig up a body, loot it, and its ghost rises with a favor to ask, like the Wayward Spirit favors in God of War (2018). Finish the favor and the ghost passes on. Ignore it and it escalates through phases: harmless, then a wandering zombie, then a Weeping Angel that only moves when you look away, then a "doorman" that drops you into a maze copy of the graveyard underground, and finally it kills you.</p>
+          <p>I listed five candidate favor types, to be trimmed to three, from questioning a ghost you haven't dug up yet to robbing another grave or summoning a demon with pop-culture rituals. Looting borrowed R.E.P.O.'s levitating carry: one item at a time, stashed in a pile and wheeled out at the end of the night instead of kept in an inventory screen, so it feels like real grave robbing. I researched Risk of Rain 2's difficulty meter as a model for difficulty that climbs the longer you stay.</p>
+          <p>The doc also kept its open questions in the open, like whether digging should take time (more pressure, and room for an upgrade path) or be instant (so it never turns into a farming sim), and whether to build five graves a night across several nights or one 70-grave maze.</p>
+          <p class="placeholder-note">Add a sentence on why the team moved off this idea.</p>
+        </div>
+        <div class="tag-row">
+          <span class="tag">Core Loop</span>
+          <span class="tag">Escalation</span>
+          <span class="tag">Open Questions</span>
+        </div>
+      </article>
+
+      <article class="devlog-entry" id="iteration-2">
+        <div class="devlog-entry-head">
+          <h3>A frozen Earth and four hunters</h3>
+          <span class="devlog-entry-date">Iteration 2</span>
+        </div>
+        <div class="prose">
+          <p>The second doc moved to a frozen, sunless Earth. The player lives on a space station and comes down once a week for supplies, so the surface always feels like unknown territory. Two resources carry the tension: a cold meter that runs down outside the safe zones, and a radar screen that shows nearby enemies as blips but runs on batteries. Batteries can go from warm to frozen but not back, so the player gets fresh ones at every habitat. That gives us exact control over how much radar time the player has on each trip, and it's the decision I expected players to think about most.</p>
+          <p>The four enemies were built on Pac-Man's ghosts and their patrol patterns. Blinky heads straight for you but freezes while you look at it. Pinky aims for where you're heading, to cut off your route. Inky is blind and tracks your scent inside a radius, firing out tendrils like GTFO's Scout. Clyde wanders near his nest, but after a random stretch far from you he sounds a horn and charges, and the noise scatters every enemy on the map. His real job was to make the player's radar information go stale.</p>
+          <p class="placeholder-note">If the Listeners / Mimics pitch at the top of this doc was a teammate's, credit them here.</p>
+        </div>
+        <div class="tag-row">
+          <span class="tag">Resource Tension</span>
+          <span class="tag">Enemy AI</span>
+          <span class="tag">Pac-Man Ghosts</span>
+        </div>
+      </article>
+
+      <article class="devlog-entry" id="iteration-3">
+        <div class="devlog-entry-head">
+          <h3>The GDD: one enemy, one map</h3>
+          <span class="devlog-entry-date">Iteration 3 · Final</span>
+        </div>
+        <div class="prose">
+          <p>The GDD opens with two scope rules: one enemy, and one map with several key locations instead of several small maps. Inky is the enemy that survived. Its tendrils extend over 10–15 seconds, hold for about 5, retract over 5–10, and stop at any barrier, so the player always has two counters: keep a wall between you and it, or stay out of range. It's blind and deaf. It only attacks if it runs into you, and a tendril that touches you sends it charging to where you were. The player stays crouched the whole time, moving slowly, and every step crunches in the snow.</p>
+          <p>The rest of the doc is written for the people building it. It specifies the tutorial beat by beat, starting from an Undertale-style opening crawl and ending in a deliberate scripted death the first time the player steps outside, to teach that this game is about escaping, not fighting. Respawning unlocks the radar. Every habitat follows one template (airlock door, its station's machine, a chair to wait out the creature, no windows, a map on the wall, a battery shelf), with a section per habitat listing its interactables.</p>
+          <p>I drew the map by hand. The short lines are the ice-covered remains of building walls, which double as cover. The yellow rooms are the five habitats, #1 is a statue landmark, and #2 is a nest piled with bones.</p>
+        </div>
+        <a class="media-frame fit-contain" href="../img/projects/scream-jam-2026/map.jpg" target="_blank" rel="noopener" style="max-width: 440px;" data-label="Add map → img/projects/scream-jam-2026/map.jpg">
+          <img data-placeholder src="../img/projects/scream-jam-2026/map.jpg" alt="Hand-drawn top-down map on notebook paper: five habitats labeled A to E highlighted in yellow, scattered short wall segments between them, a statue marked 1, and a nest marked 2" loading="lazy">
+        </a>
+        <div class="prose">
+          <p>Between iterations 2 and 3, three of the four enemies were cut.</p>
+          <p class="placeholder-note">Add a line on why Inky was the one you kept.</p>
+        </div>
+        <div class="tag-row">
+          <span class="tag">Scope Cutting</span>
+          <span class="tag">Level Design</span>
+          <span class="tag">Tutorial Design</span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section next-project-section" style="padding-top: 0; border-top: none;">
+    <div class="wrap">
+      <div class="next-project">
+        <a href="../index.html#projects">← All Projects</a>
+        <a href="wildshape.html">Next: WildShape →</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <span>© <span data-year></span> Luke Bonniwell</span>
+    <div class="footer-links">
+      <a href="https://github.com/Lukebonn" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/luke-bonniwell" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="../credits.html">Assets &amp; Credits</a>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js" defer></script>
+</body>
+</html>
