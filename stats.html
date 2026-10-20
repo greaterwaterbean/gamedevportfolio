@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark">
+<meta name="robots" content="noindex, nofollow">
+<title>Site stats | Luke Bonniwell</title>
+<link rel="icon" type="image/svg+xml" href="img/site/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Caveat:wght@600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Silkscreen&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=20261020d">
+<style>
+  .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 28px; align-items: start; }
+  .stats-card { background: var(--cream); border: 3px solid var(--ink); border-radius: var(--radius); padding: 22px 24px; box-shadow: 5px 5px 0 var(--shadow-ink); color: var(--ink); }
+  .stats-card h2 { font-size: 20px; color: var(--ink); margin-bottom: 4px; }
+  .stats-card > p { font-size: 14px; color: var(--ink-soft); margin-bottom: 14px; }
+  .stats-table { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+  .stats-table td { padding: 7px 0; border-bottom: 1px dashed #d8c3a3; color: var(--ink-soft); }
+  .stats-table td:last-child { text-align: right; font-family: var(--font-mono); font-weight: 700; color: var(--ink); }
+  .stats-table tr:last-child td { border-bottom: 0; }
+  .stats-big { font-family: 'Silkscreen', var(--font-mono); font-size: 44px; color: var(--accent); letter-spacing: 0.08em; }
+  .stats-card textarea, .stats-card input[type=text] { width: 100%; font: 14px var(--font-mono); padding: 10px 12px; border: 2px solid var(--ink); border-radius: var(--radius-sm); background: #fff; color: var(--ink); }
+  .stats-row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-top: 10px; }
+  .stats-link { font: 13px var(--font-mono); word-break: break-all; color: var(--rose-strong); }
+  .ref-block { margin-top: 16px; padding-top: 14px; border-top: 2px solid var(--ink); }
+  .ref-block h3 { font-size: 16px; color: var(--ink); margin-bottom: 4px; }
+  .muted { color: var(--ink-soft); font-size: 13.5px; }
+  .stats-status { font: 13px var(--font-mono); color: var(--text-faint); margin-top: 18px; }
+</style>
+</head>
+<body>
+<main id="main">
+  <section class="project-hero">
+    <div class="wrap">
+      <a class="breadcrumb" href="index.html">← lukebonniwell.com</a>
+      <h1>Site stats</h1>
+      <p class="project-tagline">Anonymous view counts for the portfolio. Every page load adds one, so reloads count too. This page isn't linked anywhere and isn't counted itself.</p>
+
+      <div class="stats-grid" style="margin-top: 36px;">
+        <div class="stats-card">
+          <h2>Total views</h2>
+          <p>Every page on the site, all time.</p>
+          <div class="stats-big" data-total>…</div>
+          <div class="stats-row">
+            <label class="muted"><input type="checkbox" data-skip> Don't count my own visits on this browser</label>
+          </div>
+        </div>
+
+        <div class="stats-card">
+          <h2>Make a tagged link</h2>
+          <p>Send a different link to each company or recruiter. You'll see when it's opened and which pages they read.</p>
+          <input type="text" data-tag-input placeholder="company or person, e.g. ubisoft">
+          <div class="stats-row">
+            <button class="btn btn-primary btn-sm" type="button" data-tag-add>Add &amp; copy link</button>
+            <span class="stats-link" data-tag-link></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="stats-grid" style="margin-top: 28px;">
+        <div class="stats-card">
+          <h2>Pages</h2>
+          <p>Views per page.</p>
+          <table class="stats-table" data-pages></table>
+        </div>
+        <div class="stats-card">
+          <h2>Where visitors came from</h2>
+          <p>The site that linked them here. "Direct" means a typed or pasted link, an email, or a PDF.</p>
+          <table class="stats-table" data-sources></table>
+        </div>
+      </div>
+
+      <div class="stats-card" style="margin-top: 28px;">
+        <h2>Tagged links</h2>
+        <p>One tag per line. The list is saved in this browser only.</p>
+        <textarea rows="4" data-tags></textarea>
+        <div class="stats-row">
+          <button class="btn btn-ghost btn-sm" type="button" data-refresh>Save &amp; refresh</button>
+        </div>
+        <div data-refs></div>
+      </div>
+
+      <p class="stats-status" data-status></p>
+    </div>
+  </section>
+</main>
+
+<script>
+(function () {
+  var API = 'https://abacus.jasoncameron.dev';
+  var host = location.hostname;
+  var local = host === 'localhost' || host === '127.0.0.1' || location.protocol === 'file:';
+  var NS = local ? 'lukebonniwell-dev' : 'lukebonniwell-com';
+  var SITE = 'https://lukebonniwell.com/';
+
+  var PAGES = [
+    ['home', 'Homepage'], ['tails-of-the-tower', 'Tails of the Tower'], ['scream-jam-2026', 'Scrapped Horror Game'],
+    ['whispers-through-the-halls', 'Whispers Through the Halls'], ['the-last-alchemist', 'The Last Alchemist'],
+    ['project-pet', 'Project P.E.T.'], ['how-i-use-ai', 'How I use AI'], ['credits', 'Credits']
+  ];
+  var SOURCES = ['direct', 'linkedin', 'itch', 'github', 'google', 'bing', 'duckduckgo', 'indeed', 'handshake',
+    'wellfound', 'glassdoor', 'discord', 'reddit', 'youtube', 'startplaying', 'twitter', 'other'];
+
+  var $ = function (s) { return document.querySelector(s); };
+  var store = {
+    get: function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+    set: function (k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+  };
+  var slug = function (s) { return String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 24); };
+
+  // The counter API allows 30 requests per 10 s, so reads go out one at a
+  // time, and a rate-limited read waits and tries again.
+  var wait = function (ms) { return new Promise(function (res) { setTimeout(res, ms); }); };
+  var fetchValue = function (key, tries) {
+    return fetch(API + '/get/' + NS + '/' + key).then(function (r) {
+      if (r.status === 404) return 0;
+      if (r.status === 429 && tries < 4) {
+        var after = parseInt(r.headers.get('Retry-After'), 10);
+        return wait(((after > 0 ? after : 3) + 1) * 1000).then(function () { return fetchValue(key, tries + 1); });
+      }
+      return r.json().then(function (d) { return d && typeof d.value === 'number' ? d.value : '?'; });
+    }).catch(function () { return '?'; });
+  };
+  var queue = Promise.resolve();
+  var get = function (key) {
+    var p = queue.then(function () { return fetchValue(key, 0); });
+    queue = p.then(function () { return wait(450); });
+    return p;
+  };
+
+  var row = function (table, label, value) {
+    var tr = document.createElement('tr');
+    tr.innerHTML = '<td></td><td></td>';
+    tr.children[0].textContent = label;
+    tr.children[1].textContent = value;
+    table.appendChild(tr);
+    return tr;
+  };
+
+  var skip = $('[data-skip]');
+  skip.checked = store.get('lb-skip-views') === '1';
+  skip.addEventListener('change', function () { store.set('lb-skip-views', skip.checked ? '1' : '0'); });
+
+  var tagsBox = $('[data-tags]');
+  // Starter tags: the GitHub profile README, LinkedIn and the resume PDF
+  tagsBox.value = store.get('lb-ref-tags') || ['github', 'linkedin', 'resume'].join('\n');
+  var tagList = function () {
+    return tagsBox.value.split(/\s*\n\s*/).map(slug).filter(function (t, i, a) { return t.length >= 2 && a.indexOf(t) === i; });
+  };
+
+  $('[data-tag-add]').addEventListener('click', function () {
+    var t = slug($('[data-tag-input]').value);
+    if (t.length < 2) return;
+    var link = SITE + '?ref=' + t;
+    $('[data-tag-link]').textContent = link;
+    if (tagList().indexOf(t) === -1) tagsBox.value = (tagsBox.value.trim() + '\n' + t).trim();
+    store.set('lb-ref-tags', tagsBox.value);
+    if (navigator.clipboard) navigator.clipboard.writeText(link).catch(function () {});
+  });
+
+  var loading = false;
+  var load = function () {
+    if (loading) return;
+    loading = true;
+    store.set('lb-ref-tags', tagsBox.value);
+    $('[data-status]').textContent = 'Loading from counter namespace "' + NS + '"…';
+    get('total').then(function (v) { $('[data-total]').textContent = v; });
+
+    var pages = $('[data-pages]'); pages.innerHTML = '';
+    PAGES.forEach(function (p) { var tr = row(pages, p[1], '…'); get('page-' + p[0]).then(function (v) { tr.children[1].textContent = v; }); });
+
+    var sources = $('[data-sources]'); sources.innerHTML = '';
+    SOURCES.forEach(function (s) { var tr = row(sources, s, '…'); get('src-' + s).then(function (v) { tr.children[1].textContent = v; }); });
+
+    var refs = $('[data-refs]'); refs.innerHTML = '';
+    tagList().forEach(function (t) {
+      var block = document.createElement('div');
+      block.className = 'ref-block';
+      block.innerHTML = '<h3></h3><p class="muted"></p><table class="stats-table"></table>';
+      block.querySelector('h3').textContent = t;
+      block.querySelector('p').textContent = SITE + '?ref=' + t;
+      refs.appendChild(block);
+      var table = block.querySelector('table');
+      var head = row(table, 'Opened (all pages)', '…');
+      get('ref-' + t).then(function (v) { head.children[1].textContent = v; });
+      PAGES.forEach(function (p) {
+        var tr = row(table, p[1], '…');
+        get('ref-' + t + '.' + p[0]).then(function (v) { tr.children[1].textContent = v; });
+      });
+    });
+
+    queue.then(function () {
+      loading = false;
+      $('[data-status]').textContent = 'Updated ' + new Date().toLocaleString() + ' · namespace "' + NS + '" · "?" means the counter service didn\'t answer';
+    });
+  };
+
+  $('[data-refresh]').addEventListener('click', load);
+  load();
+})();
+</script>
+</body>
+</html>

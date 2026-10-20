@@ -104,13 +104,19 @@ The third flagship card is the Scream Jam 2026 enemy design (`projects/scream-ja
 
 Adding a new devlog entry to an existing project: duplicate one `<article class="devlog-entry">...</article>` block inside that project's `#devlog` section, give it a unique `id` (e.g. `log-2026-09-01`), and fill it in. Newest entries go at the top.
 
+## View counts
+
+`js/views.js` (on every page) adds one to a few anonymous counters on [Abacus](https://abacus.jasoncameron.dev), a free counter API with no account: `total`, `page-<page>`, `src-<site that linked here>`, and for tagged links (`lukebonniwell.com/?ref=acme`) `ref-acme` plus `ref-acme.<page>` for each page that visit reads. The tag is carried onto internal links, so a whole visit counts. No cookies or IDs; visitors with Do Not Track or Global Privacy Control only add to the total and page counts. The homepage footer shows the total.
+
+`stats.html` (unlinked, noindex) reads the numbers back, makes tagged links, and has a checkbox to stop counting your own visits on that browser. Local testing (localhost) writes to a separate `lukebonniwell-dev` namespace. Counters expire after 6 months without a hit.
+
 ## Deploying on GitHub Pages
 
 1. Push this repo to `main` on GitHub (it's already connected to `github.com/Lukebonn/Portfolio`).
 2. On GitHub: **Settings → Pages → Build and deployment → Source: Deploy from a branch**, branch `main`, folder `/ (root)`. Save.
 3. The site goes live at `https://lukebonn.github.io/Portfolio/` within a minute or two.
 
-**After changing any CSS or JS**, bump the `?v=` tag on the stylesheet and script links before pushing: find-and-replace the current tag (e.g. `?v=20261020c`) with a new value across every `.html` file. GitHub Pages tells browsers to cache those files for 10 minutes, so without a new tag, recent visitors get the new HTML with the old styles, and the page looks broken until the cache expires.
+**After changing any CSS or JS**, bump the `?v=` tag on the stylesheet and script links before pushing: find-and-replace the current tag (e.g. `?v=20261020d`) with a new value across every `.html` file. GitHub Pages tells browsers to cache those files for 10 minutes, so without a new tag, recent visitors get the new HTML with the old styles, and the page looks broken until the cache expires.
 
 ## Adding a custom domain
 
