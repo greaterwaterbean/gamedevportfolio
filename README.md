@@ -5,11 +5,12 @@ Static site, no build step, no framework. Plain HTML/CSS/JS so it deploys straig
 ## Structure
 
 ```
-index.html                     homepage (about, skills, projects, devlog feed, contact)
+index.html                     homepage (about, skills, experience, projects, devlog feed, contact)
 projects/                       one HTML file per game
 css/style.css                   the entire design system
 css/game.css, js/game.js        the homepage game layer (see "Game layer" below)
 js/main.js                      nav toggle, missing-image fallback, active nav highlight, contact form
+js/clips.js                     looping clips with a "Debug view / Game view" toggle, plus the cycling clip on the Scream Jam card
 img/projects/<slug>/            per-project images (see img/README.md for expected filenames)
 img/ui/, img/icons/             pixel-art UI assets (buttons, badges, icons) — see CREDITS.md
 img/sprites/                    animated pixel sprites for the game layer — see CREDITS.md
@@ -56,7 +57,7 @@ Each piece is switched on by a word in `<body data-fx="...">` in `index.html`. D
 | `critter-react` | Critters hop and show "!" when their card is hovered |
 | `combat` | Click a critter: slash, damage numbers, HP bar; 3 hits and it poofs, then respawns |
 | `press-start` | "PRESS START" over project key art on hover |
-| `pet-snow` | Snow falling over the Project P.E.T. key art |
+| `pet-snow` | Snow falling over a project card's key art (currently unused: P.E.T. moved to Side Quests; add `<span class="snowfall fx-pet-snow">` with eight `<i>` to a card to use it) |
 | `rat-run` | Mice scurry along the top of the Tails of the Tower card now and then |
 | `quest-stamps` | "QUEST COMPLETE" / "QUEST ACTIVE" stamps land on the Experience cards |
 | `d20` | A d20 on the Dungeon Master card to roll (a 20 is guaranteed by the 10th roll) |
@@ -98,6 +99,8 @@ The Projects section has two tiers. The three big cards in the grid are the flag
 5. Update the `next-project` link at the bottom of whichever page should now point to the new one, and point the new page's `next-project` link at whatever came after it.
 
 Promoting a project to a flagship card means adding an `<article class="project-card">` to the projects grid instead; the critters, combat, and press-start game-layer pieces are built around exactly three cards there.
+
+The third flagship card is the Scream Jam 2026 enemy design (`projects/scream-jam-2026.html`); its media frame plays the 2×2 stealth and aggro grids back to back (`<video data-cycle>`). The clips live in `img/projects/scream-jam-2026/clips/` as `name_clean.mp4/.jpg` and `name_debug.mp4/.jpg`; a `<figure class="clip" data-clip="…/name">` picks them up. They were re-encoded from the showcase project's renders (`ffmpeg -vf scale=960:-2 -crf 28 -movflags +faststart`, 1280 wide for the 2×2 grids).
 
 Adding a new devlog entry to an existing project: duplicate one `<article class="devlog-entry">...</article>` block inside that project's `#devlog` section, give it a unique `id` (e.g. `log-2026-09-01`), and fill it in. Newest entries go at the top.
 

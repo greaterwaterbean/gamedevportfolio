@@ -74,7 +74,7 @@
         .then(function (res) {
           if (res.ok) {
             contactForm.reset();
-            if (note) note.textContent = "Thanks — your note is in. I'll be in touch.";
+            if (note) note.textContent = "Thanks, your note is in. I'll be in touch.";
           } else {
             return res.json().then(function (data) {
               var msg =

@@ -4,11 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="dark">
-<title>Scream Jam 2026 — Luke Bonniwell</title>
-<meta name="description" content="Design write-up for a 7-day Scream Jam 2026 horror game: three design iterations, from a grave-robbing loop to a one-enemy, one-map GDD.">
-<meta property="og:title" content="Scream Jam 2026 — Luke Bonniwell">
-<meta property="og:description" content="Three design iterations for a 7-day horror jam game, from a grave-robbing loop to a one-enemy, one-map GDD.">
+<title>Scrapped Horror Game | Luke Bonniwell</title>
+<meta name="description" content="Game and enemy design for a Scream Jam 2026 horror game by Luke Bonniwell: four monsters built from Pac-Man's ghosts, each filmed with the same player input.">
+<meta property="og:title" content="Scrapped Horror Game | Luke Bonniwell">
+<meta property="og:description" content="Four horror monsters built from Pac-Man's ghosts, each filmed with the same player input.">
 <meta property="og:type" content="article">
+<meta property="og:image" content="https://lukebonniwell.com/img/projects/scream-jam-2026/clips/grid_aggro_debug.jpg">
 <link rel="icon" type="image/svg+xml" href="../img/site/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -43,58 +44,349 @@
     <div class="wrap">
       <a class="breadcrumb" href="../index.html#projects">← All Projects</a>
       <div class="project-hero-top">
-        <span class="badge badge-progress">In Progress</span>
-        <span class="project-card-tools">Game Design · Scream Jam 2026</span>
+        <span class="badge badge-shipped">Game Design</span>
+        <span class="project-card-tools">Scream Jam 2026 · Godot 4.7</span>
       </div>
-      <h1>Scream Jam 2026</h1>
-      <p class="project-tagline">A first-person horror game about the last human on a frozen, sunless Earth, designed for a 7-day jam. This page is the design story: three iterations, and what got cut to make it fit.</p>
+      <h1>Scrapped Horror Game</h1>
+      <p class="project-tagline">For Scream Jam 2026 I designed a first-person horror game about the last human alive on a frozen, sunless Earth, crawling between heated habitats while monsters hunt the ice maze outside. Our jam team split up before the game got built. I still wanted to see the monsters in motion, so I set them up in a Godot test scene and filmed each one with the same player input.</p>
 
-      <a class="media-frame project-cover" href="#" data-label="Add cover image → img/projects/scream-jam-2026/cover.png (1920×1080)">
-        <img data-placeholder src="../img/projects/scream-jam-2026/cover.png" alt="Scream Jam 2026 game key art">
-      </a>
+      <div style="margin-top: 36px;">
+        <figure class="clip" data-clip="../img/projects/scream-jam-2026/clips/grid_aggro" data-view="debug">
+            <div class="clip-frame">
+              <video muted loop playsinline controls preload="none" poster="../img/projects/scream-jam-2026/clips/grid_aggro_debug.jpg" src="../img/projects/scream-jam-2026/clips/grid_aggro_debug.mp4" aria-label="All four monsters side by side, aggro clip"></video>
+            </div>
+            <figcaption class="clip-bar">
+              <span class="clip-label">Same mistake (breaking cover), four different punishments</span>
+              <span class="clip-toggle" role="group" aria-label="Clip view">
+                <button type="button" data-view="debug" aria-pressed="true">Debug view</button>
+                <button type="button" data-view="clean" aria-pressed="false">Game view</button>
+              </span>
+            </figcaption>
+          </figure>
+      </div>
 
       <div class="project-meta-row">
         <div class="fact">
           <dt>Role</dt>
-          <dd>Designer</dd>
+          <dd>Designer: game, enemies, map</dd>
         </div>
         <div class="fact">
-          <dt>Team</dt>
-          <dd>TBD</dd>
+          <dt>Jam</dt>
+          <dd>Scream Jam · Oct 16–23, 2026</dd>
         </div>
         <div class="fact">
           <dt>Engine</dt>
-          <dd>TBD</dd>
+          <dd>Godot 4.7</dd>
         </div>
         <div class="fact">
-          <dt>Timeline</dt>
-          <dd>7 days · Scream Jam, Oct 16–23, 2026</dd>
+          <dt>Clips</dt>
+          <dd>4 monsters × stealth and aggro</dd>
         </div>
       </div>
 
       <div class="project-links">
-        <a class="btn btn-ghost" href="https://itch.io/jam/scream-jam-2026" target="_blank" rel="noopener">Scream Jam 2026 on itch.io</a>
+        <a class="btn btn-primary" href="#roster">Meet the four ghosts</a>
+        <a class="btn btn-ghost" href="#design-log">Read the design log</a>
       </div>
     </div>
   </section>
 
-  <section class="section" style="border-top: none; padding-top: 0;">
+  <section class="section" id="roster" style="border-top: none; padding-top: 0;">
+    <div class="wrap">
+      <div class="section-head" style="max-width: 760px;">
+        <span class="eyebrow">The roster</span>
+        <h2>Four ghosts, each after something different</h2>
+        <p>Pac-Man's ghosts each run one simple targeting rule, and together those rules produce pincers and ambushes. I kept each ghost's rule and translated it into first-person horror stealth. Three of the four warn you and then go for where you <em>were</em>, so moving is almost always the answer. Blinky is the exception, because you beat it by looking at it.</p>
+      </div>
+
+      <div class="rule-table-wrap">
+        <table class="rule-table">
+          <thead>
+            <tr>
+              <th scope="col">Ghost</th>
+              <th scope="col">Pac-Man rule</th>
+              <th scope="col">My rule</th>
+              <th scope="col">Takes your</th>
+              <th scope="col">Counterplay</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Blinky</th>
+              <td>Targets Pac-Man's tile</td>
+              <td>Walks straight to your tile; can't move while you look at it</td>
+              <td>Attention</td>
+              <td>Spend looks on it</td>
+            </tr>
+            <tr>
+              <th scope="row">Pinky</th>
+              <td>Targets 4 tiles ahead of Pac-Man</td>
+              <td>Every 10 s, moves 10 ft ahead of where you're looking; when it hears you, it screeches and pounces on where you were</td>
+              <td>Route</td>
+              <td>Keep moving after the screech</td>
+            </tr>
+            <tr>
+              <th scope="row">Inky</th>
+              <td>The unpredictable one</td>
+              <td>Searches at random inside a 20 ft scent circle; pulses tendrils that stop at walls</td>
+              <td>Cover</td>
+              <td>Keep a barricade between you</td>
+            </tr>
+            <tr>
+              <th scope="row">Clyde</th>
+              <td>Chases when far, retreats when close</td>
+              <td>Approaches past 50 ft, wanders its nest inside it; its horn scatters every monster</td>
+              <td>Information</td>
+              <td>Stay close; scout again after a horn</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="margin: 44px 0 12px;">
+        <figure class="clip" data-clip="../img/projects/scream-jam-2026/clips/grid_stealth" data-view="debug">
+            <div class="clip-frame">
+              <video muted loop playsinline controls preload="none" poster="../img/projects/scream-jam-2026/clips/grid_stealth_debug.jpg" src="../img/projects/scream-jam-2026/clips/grid_stealth_debug.mp4" aria-label="All four monsters side by side, stealth clip"></video>
+            </div>
+            <figcaption class="clip-bar">
+              <span class="clip-label">Same hiding spot, same input, four different patrols</span>
+              <span class="clip-toggle" role="group" aria-label="Clip view">
+                <button type="button" data-view="debug" aria-pressed="true">Debug view</button>
+                <button type="button" data-view="clean" aria-pressed="false">Game view</button>
+              </span>
+            </figcaption>
+          </figure>
+      </div>
+
+      <div class="prose" style="max-width: 820px; margin-bottom: 40px;">
+        <p><strong>How to read the clips.</strong> They start in the debug view. The tag over each monster is its state, the dashed line ending in an ✕ is where it's heading, the yellow wedge is the player's gaze, white rings are footstep noise, and the corner map shows it all from above. Switch to the game view to see it the way a player would. The beam from the visor is where the player is looking, and since the world is monochrome, any colour on screen is a warning.</p>
+        <p>Every clip uses one of two scripted inputs. In <em>stealth</em> the player stays crouched behind cover. In <em>aggro</em> they break cover at 0:01 and crawl across an open gap.</p>
+      </div>
+
+      <article class="ghost" id="blinky">
+        <div class="ghost-head">
+          <h3>Blinky</h3>
+          <span class="ghost-nick">"the statue"</span>
+          <span class="ghost-attacks">Takes your attention</span>
+        </div>
+        <p class="ghost-hook">It can only move when you aren't looking at it, and you need your eyes for everything else.</p>
+        <div class="clip-pair">
+          <figure class="clip" data-clip="../img/projects/scream-jam-2026/clips/blinky_stealth" data-view="debug">
+            <div class="clip-frame">
+              <video muted loop playsinline controls preload="none" poster="../img/projects/scream-jam-2026/clips/blinky_stealth_debug.jpg" src="../img/projects/scream-jam-2026/clips/blinky_stealth_debug.mp4" aria-label="Blinky, stealth clip"></video>
+            </div>
+            <figcaption class="clip-bar">
+              <span class="clip-label">Stealth</span>
+              <span class="clip-toggle" role="group" aria-label="Clip view">
+                <button type="button" data-view="debug" aria-pressed="true">Debug view</button>
+                <button type="button" data-view="clean" aria-pressed="false">Game view</button>
+              </span>
+            </figcaption>
+          </figure>
+          <figure class="clip" data-clip="../img/projects/scream-jam-2026/clips/blinky_aggro" data-view="debug">
+            <div class="clip-frame">
+              <video muted loop playsinline controls preload="none" poster="../img/projects/scream-jam-2026/clips/blinky_aggro_debug.jpg" src="../img/projects/scream-jam-2026/clips/blinky_aggro_debug.mp4" aria-label="Blinky, aggro clip"></video>
+            </div>
+            <figcaption class="clip-bar">
+              <span class="clip-label">Aggro</span>
+              <span class="clip-toggle" role="group" aria-label="Clip view">
+                <button type="button" data-view="debug" aria-pressed="true">Debug view</button>
+                <button type="button" data-view="clean" aria-pressed="false">Game view</button>
+              </span>
+            </figcaption>
+          </figure>
+        </div>
+        <dl class="ghost-facts">
+          <div>
+            <dt>My rule</dt>
+            <dd>Pac-Man's Blinky is the pure chaser. Mine walks straight to your tile once it knows where you are and keeps coming, but it <strong>can't move while it's inside your gaze</strong>.</dd>
+          </div>
+          <div>
+            <dt>The tell</dt>
+            <dd>Its walk cycle is tied to distance travelled, so when you look at it, it stops dead mid-stride. The frozen pose is the warning, so it needs no UI.</dd>
+          </div>
+          <div>
+            <dt>In the clips</dt>
+            <dd>Stealth: at 0:02.6 it walks into the visor beam and freezes. When the visor drops at 0:05 it walks straight past. Aggro: it spots the player at 0:03.5, freezes every time they glance back, and ends in a standoff 3 m away that the player can't hold forever.</dd>
+          </div>
+          <div>
+            <dt>Design call</dt>
+            <dd>I gave it an unaware patrol so it can be snuck past, because a stealth game needs a window where the player can win. <strong>Open question:</strong> at 1.6 m/s, does freezing it feel like a choice or a chore?</dd>
+          </div>
+        </dl>
+      </article>
+
+      <article class="ghost" id="pinky">
+        <div class="ghost-head">
+          <h3>Pinky</h3>
+          <span class="ghost-nick">"the cutoff"</span>
+          <span class="ghost-attacks">Takes your route</span>
+        </div>
+        <p class="ghost-hook">It's always somewhere in your way, and the moment it hears you, it jumps.</p>
+        <div class="clip-pair">
+          <figure class="clip" data-clip="../img/projects/scream-jam-2026/clips/pinky_stealth" data-view="debug">
+            <div class="clip-frame">
+              <video muted loop playsinline controls preload="none" poster="../img/projects/scream-jam-2026/clips/pinky_stealth_debug.jpg" src="../img/projects/scream-jam-2026/clips/pinky_stealth_debug.mp4" aria-label="Pinky, stealth clip"></video>
+            </div>
+            <figcaption class="clip-bar">
+              <span class="clip-label">Stealth</span>
+              <span class="clip-toggle" role="group" aria-label="Clip view">
+                <button type="button" data-view="debug" aria-pressed="true">Debug view</button>
+                <button type="button" data-view="clean" aria-pressed="false">Game view</button>
+              </span>
+            </figcaption>
+          </figure>
+          <figure class="clip" data-clip="../img/projects/scream-jam-2026/clips/pinky_aggro" data-view="debug">
+            <div class="clip-frame">
+              <video muted loop playsinline controls preload="none" poster="../img/projects/scream-jam-2026/clips/pinky_aggro_debug.jpg" src="../img/projects/scream-jam-2026/clips/pinky_aggro_debug.mp4" aria-label="Pinky, aggro clip"></video>
+            </div>
+            <figcaption class="clip-bar">
+              <span class="clip-label">Aggro · unmute for the screech</span>
+              <span class="clip-toggle" role="group" aria-label="Clip view">
+                <button type="button" data-view="debug" aria-pressed="true">Debug view</button>
+                <button type="button" data-view="clean" aria-pressed="false">Game view</button>
+              </span>
+            </figcaption>
+          </figure>
+        </div>
+        <dl class="ghost-facts">
+          <div>
+            <dt>My rule</dt>
+            <dd>Pac-Man's Pinky aims four tiles ahead of where Pac-Man is <em>moving</em>. Mine reads where you're <em>looking</em>: every 10 s it moves 10 ft ahead of your gaze. When it hears your footsteps it screeches, and 2.5 s later it lands on <strong>the spot where you were</strong>.</dd>
+          </div>
+          <div>
+            <dt>The tell</dt>
+            <dd>The outside world is monochrome, so its warning is colour. The gelatinous cube flushes acid green and magenta, then screeches. That gives you 3.5 s to move.</dd>
+          </div>
+          <div>
+            <dt>In the clips</dt>
+            <dd>Stealth: it parks 10 ft in front of the player's cover and sits there, in the way, but never attacks a silent player. Aggro: two screeches. The player keeps crawling after the first and it misses at 0:05.2. They stop after the second, and it lands on them at 0:09.1.</dd>
+          </div>
+          <div>
+            <dt>Design call</dt>
+            <dd>The 10-second reposition keeps steady pressure on your route, and the pounce punishes noise. <strong>Open question:</strong> is 3.5 s of warning fair without making Pinky harmless?</dd>
+          </div>
+        </dl>
+      </article>
+
+      <article class="ghost" id="inky">
+        <div class="ghost-head">
+          <h3>Inky</h3>
+          <span class="ghost-nick">"the scout"</span>
+          <span class="ghost-attacks">Takes your cover</span>
+        </div>
+        <p class="ghost-hook">It can smell you from twenty feet away but can't pin you down any closer, and its tendrils can't get through walls.</p>
+        <div class="clip-pair">
+          <figure class="clip" data-clip="../img/projects/scream-jam-2026/clips/inky_stealth" data-view="debug">
+            <div class="clip-frame">
+              <video muted loop playsinline controls preload="none" poster="../img/projects/scream-jam-2026/clips/inky_stealth_debug.jpg" src="../img/projects/scream-jam-2026/clips/inky_stealth_debug.mp4" aria-label="Inky, stealth clip"></video>
+            </div>
+            <figcaption class="clip-bar">
+              <span class="clip-label">Stealth</span>
+              <span class="clip-toggle" role="group" aria-label="Clip view">
+                <button type="button" data-view="debug" aria-pressed="true">Debug view</button>
+                <button type="button" data-view="clean" aria-pressed="false">Game view</button>
+              </span>
+            </figcaption>
+          </figure>
+          <figure class="clip" data-clip="../img/projects/scream-jam-2026/clips/inky_aggro" data-view="debug">
+            <div class="clip-frame">
+              <video muted loop playsinline controls preload="none" poster="../img/projects/scream-jam-2026/clips/inky_aggro_debug.jpg" src="../img/projects/scream-jam-2026/clips/inky_aggro_debug.mp4" aria-label="Inky, aggro clip"></video>
+            </div>
+            <figcaption class="clip-bar">
+              <span class="clip-label">Aggro</span>
+              <span class="clip-toggle" role="group" aria-label="Clip view">
+                <button type="button" data-view="debug" aria-pressed="true">Debug view</button>
+                <button type="button" data-view="clean" aria-pressed="false">Game view</button>
+              </span>
+            </figcaption>
+          </figure>
+        </div>
+        <dl class="ghost-facts">
+          <div>
+            <dt>My rule</dt>
+            <dd>Outside 20 ft it follows your scent. Inside 20 ft it can't pinpoint you, so it searches at random. Every 10–30 s it stops and pulses out tendrils exactly like GTFO's Scout, and <strong>a tendril stops at the first barricade it touches</strong>. Touch one and it charges the point of contact.</dd>
+          </div>
+          <div>
+            <dt>The tell</dt>
+            <dd>It stops moving to pulse, and the tendrils creep across the snow where you can see them. After a touch it takes 2 s to pull them back in, and that's your window, because the touch only told it where you <em>were</em>.</dd>
+          </div>
+          <div>
+            <dt>In the clips</dt>
+            <dd>Stealth: it searches right in front of the player, then pulses, and the tendrils aimed at them stop on the barricade. Aggro: the player crawls into a tendril in the open at 0:03.5. Inky charges at 0:05.5 and arrives to find them 4 m further down the corridor.</dd>
+          </div>
+          <div>
+            <dt>Design call</dt>
+            <dd>It charges the spot it touched rather than the player, so getting touched is a warning you can still escape. <strong>Open question:</strong> are 10–15 s tendrils slow enough to read and quick enough to keep the pressure on?</dd>
+          </div>
+        </dl>
+      </article>
+
+      <article class="ghost" id="clyde">
+        <div class="ghost-head">
+          <h3>Clyde</h3>
+          <span class="ghost-nick">"the bull"</span>
+          <span class="ghost-attacks">Takes your information</span>
+        </div>
+        <p class="ghost-hook">When it blows its horn, every monster on the map moves, and your radar is suddenly out of date.</p>
+        <div class="clip-pair">
+          <figure class="clip" data-clip="../img/projects/scream-jam-2026/clips/clyde_stealth" data-view="debug">
+            <div class="clip-frame">
+              <video muted loop playsinline controls preload="none" poster="../img/projects/scream-jam-2026/clips/clyde_stealth_debug.jpg" src="../img/projects/scream-jam-2026/clips/clyde_stealth_debug.mp4" aria-label="Clyde, stealth clip"></video>
+            </div>
+            <figcaption class="clip-bar">
+              <span class="clip-label">Stealth</span>
+              <span class="clip-toggle" role="group" aria-label="Clip view">
+                <button type="button" data-view="debug" aria-pressed="true">Debug view</button>
+                <button type="button" data-view="clean" aria-pressed="false">Game view</button>
+              </span>
+            </figcaption>
+          </figure>
+          <figure class="clip" data-clip="../img/projects/scream-jam-2026/clips/clyde_aggro" data-view="debug">
+            <div class="clip-frame">
+              <video muted loop playsinline controls preload="none" poster="../img/projects/scream-jam-2026/clips/clyde_aggro_debug.jpg" src="../img/projects/scream-jam-2026/clips/clyde_aggro_debug.mp4" aria-label="Clyde, aggro clip"></video>
+            </div>
+            <figcaption class="clip-bar">
+              <span class="clip-label">Aggro · watch the corner map</span>
+              <span class="clip-toggle" role="group" aria-label="Clip view">
+                <button type="button" data-view="debug" aria-pressed="true">Debug view</button>
+                <button type="button" data-view="clean" aria-pressed="false">Game view</button>
+              </span>
+            </figcaption>
+          </figure>
+        </div>
+        <dl class="ghost-facts">
+          <div>
+            <dt>My rule</dt>
+            <dd>Farther than 50 ft away, Clyde walks toward you. Inside 50 ft it wanders around its nest. It holds either state for 12.5 s before it can switch. Stay far away for a random 5–50 s and it <strong>blows its horn</strong>: every monster on the map scatters to a new spot, and Clyde charges where you were standing.</dd>
+          </div>
+          <div>
+            <dt>The tell</dt>
+            <dd>It rears up and swells for 1.3 s before it charges, and the horn shakes the camera. The bigger cost is that whatever your radar showed you, which you paid batteries for, is now wrong.</dd>
+          </div>
+          <div>
+            <dt>In the clips</dt>
+            <dd>Stealth: it's already committed to an approach, so it keeps lumbering toward the player's cover until its hold runs out at 0:04.0, then turns back to its nest. Aggro: it blows its horn at 0:03.4, and on the corner map Blinky, Pinky and Inky all scatter.</dd>
+          </div>
+          <div>
+            <dt>Design call</dt>
+            <dd>Like Pac-Man's Clyde, it's meant to seem random, but it has a brain you can control once you work it out: stay within 50 ft and it stays home. The horn puts it in a different league from the other three, since it moves every monster on the map at once. <strong>Open question:</strong> does "stay close to Clyde" read without a tutorial?</dd>
+          </div>
+        </dl>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" id="design-log">
     <div class="wrap">
       <div class="project-body">
         <div class="prose">
-          <p class="placeholder-note">Draft. Before publishing (after the Oct 23 deadline): replace "Scream Jam 2026" with the game's title, add the itch link as a "Play on itch.io" button, add a cover image and screenshots, and fill in Team and Engine above.</p>
-
-          <h2>Overview</h2>
-          <p>Scream Jam is a 7-day, horror-themed game jam on itch.io. Our entry puts the player in the shoes of the last human alive, long after the sun has gone out. The surface is frozen and overrun by monsters that can only survive in the cold, and the player has to cross it between five warm habitats, finishing a checklist of errands before the cold or the creature gets them.</p>
-
-          <h2>My Role</h2>
-          <p>I'm the designer. I wrote the game's design across three documents, from a first pitch to the GDD the team is building from, including the hand-drawn map of the playable space.</p>
-          <p class="placeholder-note">Confirm the role line, and add anything else you're doing on the team (programming, writing, etc.).</p>
-
-          <h2>The Loop</h2>
+          <span class="eyebrow">Design log</span>
+          <h2>The game I designed</h2>
+          <p>Scream Jam is a 7-day horror game jam on itch.io. My design puts the player in the shoes of the last human alive, long after the sun has gone out. The surface is frozen and overrun by monsters that can only survive in the cold, and the player has to cross it between five warm habitats, finishing a checklist of errands before the cold or a monster gets them.</p>
           <ul>
             <li>Plan a route between habitats. Each one is a warm, safe room with fresh batteries.</li>
-            <li>Cross the frozen ruins while your warmth meter drains, using a battery-powered radar to spot the creature.</li>
+            <li>Cross the frozen ruins while your warmth meter drains, using a battery-powered radar to spot the monsters.</li>
             <li>Carry items between habitats to finish the checklist: carrots to the pigs, a corpse to the biodiesel plant, oil to the generator, flowers to a grave.</li>
             <li>Get back to the first habitat alive.</li>
           </ul>
@@ -114,80 +406,92 @@
             </div>
           </div>
           <div class="side-card">
-            <h3>Jam</h3>
-            <p style="margin:0; font-size:14.5px;">Scream Jam 2026 on itch.io: horror-themed, 7 days, Oct 16–23. Designed in three Google Docs iterations plus a hand-drawn map and a reference board.</p>
+            <h3>Three GDD revisions</h3>
+            <p style="margin:0; font-size:14.5px;">I wrote the design in three revisions, each smaller and more specific than the last, plus a hand-drawn map.</p>
           </div>
         </aside>
+      </div>
+
+      <div style="margin-top: 56px;">
+        <article class="devlog-entry" id="iteration-1">
+          <div class="devlog-entry-head">
+            <h3>Gravedigger</h3>
+            <span class="devlog-entry-date">GDD Revision 1</span>
+          </div>
+          <div class="prose">
+            <p>The first pitch was a first-person grave robber. Dig up a body, loot it, and its ghost rises with a favor to ask, like the Wayward Spirit favors in God of War (2018). Finish the favor and the ghost passes on. Ignore it and it escalates through phases: harmless, then a wandering zombie, then a Weeping Angel that only moves when you look away, then a "doorman" that drops you into a maze copy of the graveyard underground, and finally it kills you.</p>
+            <p>I listed five candidate favor types, to be trimmed to three. Looting borrowed R.E.P.O.'s levitating carry: one item at a time, stashed in a pile and wheeled out at the end of the night, so it feels like real grave robbing instead of an inventory screen. I looked at Risk of Rain 2's difficulty meter as a model for difficulty that climbs the longer you stay. I also wrote down the questions I hadn't answered yet, like whether digging should take time (more pressure, and room for upgrades) or be instant (so it never turns into a farming sim).</p>
+          </div>
+          <div class="tag-row">
+            <span class="tag">Core Loop</span>
+            <span class="tag">Escalation</span>
+            <span class="tag">Open Questions</span>
+          </div>
+        </article>
+
+        <article class="devlog-entry" id="iteration-2">
+          <div class="devlog-entry-head">
+            <h3>Scrapped horror game</h3>
+            <span class="devlog-entry-date">GDD Revision 2</span>
+          </div>
+          <div class="prose">
+            <p>The second revision moved to a frozen, sunless Earth. The player lives on a space station and comes down once a week for supplies, so the surface always feels like unknown territory. Two resources carry the tension: a cold meter that runs down outside the safe zones, and a radar that shows nearby monsters as blips but runs on batteries. Batteries can go from warm to frozen but not back, so the player gets fresh ones at every habitat. That gives me exact control over how much radar time the player has on each trip, and I expected it to be the decision players think about most.</p>
+            <p>The four ghosts come from this revision. I built each one on a Pac-Man ghost and its targeting rule: Blinky freezes while you look at it, Pinky cuts off your route, Inky is blind and works by scent and tendrils, and Clyde's real job is to make the player's radar go stale. The roster at the top of this page is this revision.</p>
+          </div>
+          <div class="tag-row">
+            <span class="tag">Resource Tension</span>
+            <span class="tag">Enemy AI</span>
+            <span class="tag">Pac-Man Ghosts</span>
+          </div>
+        </article>
+
+        <article class="devlog-entry" id="iteration-3">
+          <div class="devlog-entry-head">
+            <h3>One enemy, one map</h3>
+            <span class="devlog-entry-date">GDD Revision 3</span>
+          </div>
+          <div class="prose">
+            <p>Revision 3 opens with two scope rules for a 7-day jam: one enemy, and one map with several key locations instead of several small maps. I cut three of the four ghosts and kept Inky. Its tendrils extend over 10–15 seconds, hold for about 5, retract over 5–10, and stop at any barrier, so the player has two ways out: keep a wall between you and it, or stay out of range. The player stays crouched the whole time, moving slowly, and every step crunches in the snow.</p>
+            <p>The rest of the doc is written for the people building it. It lays out the tutorial beat by beat, from an Undertale-style opening crawl to a scripted death the first time the player steps outside, which teaches that this game is about escaping. Respawning unlocks the radar. Every habitat follows one template (airlock door, its station's machine, a chair to wait out the monster, no windows, a map on the wall, a battery shelf), and each habitat gets a section listing what you can interact with.</p>
+            <p>I drew the map by hand. The short lines are the ice-covered remains of building walls, which double as cover. The yellow rooms are the five habitats, #1 is a statue landmark, and #2 is a nest piled with bones.</p>
+          </div>
+          <a class="media-frame fit-contain" href="../img/projects/scream-jam-2026/map.jpg" target="_blank" rel="noopener" style="max-width: 440px;">
+            <img src="../img/projects/scream-jam-2026/map.jpg" alt="Hand-drawn top-down map on notebook paper: five habitats labeled A to E highlighted in yellow, scattered short wall segments between them, a statue marked 1, and a nest marked 2" loading="lazy">
+          </a>
+          <div class="tag-row">
+            <span class="tag">Scope Cutting</span>
+            <span class="tag">Level Design</span>
+            <span class="tag">Tutorial Design</span>
+          </div>
+        </article>
       </div>
     </div>
   </section>
 
-  <section class="section" id="design">
+  <section class="section" id="again">
     <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow">Design Log</span>
-        <h2>From pitch to GDD</h2>
-        <p>Three documents, each one smaller and more specific than the last.</p>
+      <div class="project-body">
+        <div class="prose">
+          <span class="eyebrow">Building it</span>
+          <h2>If I built it again</h2>
+          <p>I built these clips with Claude Code, working from my design docs. For a portfolio piece that made sense. The design was already done, and I wanted to see my rules running and get them in front of people quickly. For the real game I would split the work differently.</p>
+          <ul>
+            <li>I'd write the four state machines myself in GDScript. The enemy behaviour is the design here, and tuning it well means knowing that code inside out. It's the same kind of work I did by hand on Tails of the Tower, where I built the slime, the archer and the Hob Lobber.</li>
+            <li>I'd still use AI for the support code around the game, like the capture setup, the debug overlay and the render scripts.</li>
+            <li>I'd put the open questions above in front of real players before changing any numbers.</li>
+          </ul>
+          <p><a href="../devlog/how-i-use-ai/" style="color: var(--accent);">More on how I use AI coding tools →</a></p>
+        </div>
+
+        <aside>
+          <div class="side-card">
+            <h3>How the clips were made</h3>
+            <p style="margin:0 0 10px; font-size:14.5px;">Monsters find their paths on a 1 m grid, and sightlines are checked in 3D over barricade heights, so a tall monster can see over cover that hides a crouched player.</p>
+            <p style="margin:0 0 10px; font-size:14.5px;">Every run uses a fixed 1/30 s tick and seeded randomness, so it plays out the same way each time. Godot's Movie Maker renders the debug and game views from the same run.</p>
+            <p style="margin:0; font-size:14.5px;">Inky's pulse and Clyde's horn run on long timers, so some clips start partway into them. The rules and numbers are the same.</p>
+          </div>
+        </aside>
       </div>
-
-      <article class="devlog-entry" id="iteration-1">
-        <div class="devlog-entry-head">
-          <h3>Gravedigger</h3>
-          <span class="devlog-entry-date">Iteration 1</span>
-        </div>
-        <div class="prose">
-          <p>The first pitch was a first-person grave robber. Dig up a body, loot it, and its ghost rises with a favor to ask, like the Wayward Spirit favors in God of War (2018). Finish the favor and the ghost passes on. Ignore it and it escalates through phases: harmless, then a wandering zombie, then a Weeping Angel that only moves when you look away, then a "doorman" that drops you into a maze copy of the graveyard underground, and finally it kills you.</p>
-          <p>I listed five candidate favor types, to be trimmed to three, from questioning a ghost you haven't dug up yet to robbing another grave or summoning a demon with pop-culture rituals. Looting borrowed R.E.P.O.'s levitating carry: one item at a time, stashed in a pile and wheeled out at the end of the night instead of kept in an inventory screen, so it feels like real grave robbing. I researched Risk of Rain 2's difficulty meter as a model for difficulty that climbs the longer you stay.</p>
-          <p>The doc also kept its open questions in the open, like whether digging should take time (more pressure, and room for an upgrade path) or be instant (so it never turns into a farming sim), and whether to build five graves a night across several nights or one 70-grave maze.</p>
-          <p class="placeholder-note">Add a sentence on why the team moved off this idea.</p>
-        </div>
-        <div class="tag-row">
-          <span class="tag">Core Loop</span>
-          <span class="tag">Escalation</span>
-          <span class="tag">Open Questions</span>
-        </div>
-      </article>
-
-      <article class="devlog-entry" id="iteration-2">
-        <div class="devlog-entry-head">
-          <h3>A frozen Earth and four hunters</h3>
-          <span class="devlog-entry-date">Iteration 2</span>
-        </div>
-        <div class="prose">
-          <p>The second doc moved to a frozen, sunless Earth. The player lives on a space station and comes down once a week for supplies, so the surface always feels like unknown territory. Two resources carry the tension: a cold meter that runs down outside the safe zones, and a radar screen that shows nearby enemies as blips but runs on batteries. Batteries can go from warm to frozen but not back, so the player gets fresh ones at every habitat. That gives us exact control over how much radar time the player has on each trip, and it's the decision I expected players to think about most.</p>
-          <p>The four enemies were built on Pac-Man's ghosts and their patrol patterns. Blinky heads straight for you but freezes while you look at it. Pinky aims for where you're heading, to cut off your route. Inky is blind and tracks your scent inside a radius, firing out tendrils like GTFO's Scout. Clyde wanders near his nest, but after a random stretch far from you he sounds a horn and charges, and the noise scatters every enemy on the map. His real job was to make the player's radar information go stale.</p>
-          <p class="placeholder-note">If the Listeners / Mimics pitch at the top of this doc was a teammate's, credit them here.</p>
-        </div>
-        <div class="tag-row">
-          <span class="tag">Resource Tension</span>
-          <span class="tag">Enemy AI</span>
-          <span class="tag">Pac-Man Ghosts</span>
-        </div>
-      </article>
-
-      <article class="devlog-entry" id="iteration-3">
-        <div class="devlog-entry-head">
-          <h3>The GDD: one enemy, one map</h3>
-          <span class="devlog-entry-date">Iteration 3 · Final</span>
-        </div>
-        <div class="prose">
-          <p>The GDD opens with two scope rules: one enemy, and one map with several key locations instead of several small maps. Inky is the enemy that survived. Its tendrils extend over 10–15 seconds, hold for about 5, retract over 5–10, and stop at any barrier, so the player always has two counters: keep a wall between you and it, or stay out of range. It's blind and deaf. It only attacks if it runs into you, and a tendril that touches you sends it charging to where you were. The player stays crouched the whole time, moving slowly, and every step crunches in the snow.</p>
-          <p>The rest of the doc is written for the people building it. It specifies the tutorial beat by beat, starting from an Undertale-style opening crawl and ending in a deliberate scripted death the first time the player steps outside, to teach that this game is about escaping, not fighting. Respawning unlocks the radar. Every habitat follows one template (airlock door, its station's machine, a chair to wait out the creature, no windows, a map on the wall, a battery shelf), with a section per habitat listing its interactables.</p>
-          <p>I drew the map by hand. The short lines are the ice-covered remains of building walls, which double as cover. The yellow rooms are the five habitats, #1 is a statue landmark, and #2 is a nest piled with bones.</p>
-        </div>
-        <a class="media-frame fit-contain" href="../img/projects/scream-jam-2026/map.jpg" target="_blank" rel="noopener" style="max-width: 440px;" data-label="Add map → img/projects/scream-jam-2026/map.jpg">
-          <img data-placeholder src="../img/projects/scream-jam-2026/map.jpg" alt="Hand-drawn top-down map on notebook paper: five habitats labeled A to E highlighted in yellow, scattered short wall segments between them, a statue marked 1, and a nest marked 2" loading="lazy">
-        </a>
-        <div class="prose">
-          <p>Between iterations 2 and 3, three of the four enemies were cut.</p>
-          <p class="placeholder-note">Add a line on why Inky was the one you kept.</p>
-        </div>
-        <div class="tag-row">
-          <span class="tag">Scope Cutting</span>
-          <span class="tag">Level Design</span>
-          <span class="tag">Tutorial Design</span>
-        </div>
-      </article>
     </div>
   </section>
 
@@ -195,7 +499,7 @@
     <div class="wrap">
       <div class="next-project">
         <a href="../index.html#projects">← All Projects</a>
-        <a href="wildshape.html">Next: WildShape →</a>
+        <a href="the-last-alchemist.html">Next: The Last Alchemist →</a>
       </div>
     </div>
   </section>
@@ -214,5 +518,6 @@
 </footer>
 
 <script src="../js/main.js" defer></script>
+<script src="../js/clips.js" defer></script>
 </body>
 </html>

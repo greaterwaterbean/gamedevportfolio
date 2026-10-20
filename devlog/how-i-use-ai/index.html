@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="dark">
-<title>How I Use AI Coding Tools — Luke Bonniwell</title>
-<meta name="description" content="An honest account of where AI coding tools sit in my workflow: what I hand them, what I keep, and one thing they kept getting wrong on a 5-week internship MVP.">
-<meta property="og:title" content="How I Use AI Coding Tools — Luke Bonniwell">
-<meta property="og:description" content="What I hand the model, what I keep, and one concrete time I had to override it.">
+<title>How I Use AI Coding Tools | Luke Bonniwell</title>
+<meta name="description" content="Where AI coding tools fit in my workflow, and the one thing they kept getting wrong on a 5-week internship MVP.">
+<meta property="og:title" content="How I Use AI Coding Tools | Luke Bonniwell">
+<meta property="og:description" content="What I hand off to AI tools, and a real case where I had to override them.">
 <meta property="og:type" content="article">
 <link rel="icon" type="image/svg+xml" href="../../img/site/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -47,7 +47,7 @@
         <span class="project-card-tools">Claude Code &middot; Gemini</span>
       </div>
       <h1>How I use AI coding tools</h1>
-      <p class="project-tagline">A short, honest account of where these tools sit in my workflow &mdash; what I hand them, what I keep for myself, and one thing they kept getting wrong.</p>
+      <p class="project-tagline">What I use AI coding tools for, and the one thing they kept getting wrong during my internship.</p>
 
       <div class="project-meta-row">
         <div class="fact">
@@ -64,7 +64,7 @@
         </div>
         <div class="fact">
           <dt>Tools</dt>
-          <dd>Claude Code &amp; Gemini &mdash; CLI and editor extensions</dd>
+          <dd>Claude Code &amp; Gemini (CLI and editor extensions)</dd>
         </div>
       </div>
     </div>
@@ -75,20 +75,20 @@
       <div class="project-body">
         <div class="prose">
           <h2>The project</h2>
-          <p>Over summer 2026 I was one of two engineering interns on a full-stack product team at IndeVets, building a veterinarian-only community platform &mdash; a Reddit-style app for a professional audience. I owned the entire frontend: a cross-platform mobile client in React Native, Expo, and TypeScript, taken from nothing to a functional MVP in five weeks.</p>
-          <p>That meant building the core of the app end to end &mdash; home feed, post composer, threaded case discussions, a moderation queue, inbox, and user profiles &mdash; on a component-based design system, with Redux Toolkit for state and React Hook Form plus Zod for validation. The frontend talked to a teammate's REST backend (Express, Prisma, PostgreSQL), so a lot of the work was coordinating a shared Firebase authentication flow and matching validation schemas across two repositories. Everything shipped through feature branches, pull request review, and weekly releases.</p>
+          <p>Over summer 2026 I was one of two engineering interns on a full-stack product team at IndeVets, building a Reddit-style community app just for veterinarians. I owned the entire frontend, a cross-platform mobile client in React Native, Expo and TypeScript, and took it from nothing to a working MVP in five weeks.</p>
+          <p>That meant building the core of the app end to end: the home feed, post composer, threaded case discussions, moderation queue, inbox and user profiles. It all sat on a component-based design system, with Redux Toolkit for state and React Hook Form plus Zod for validation. The frontend talked to a teammate's REST backend (Express, Prisma, PostgreSQL), so a lot of my time went into a shared Firebase sign-in flow and keeping validation schemas matched across two repositories. Everything shipped through feature branches, pull request review and weekly releases.</p>
 
-          <h2>Where the tools fit, and where they don't</h2>
+          <h2>Where the tools fit</h2>
           <p>Day to day I work with Claude Code and Gemini, through both their command-line tools and their editor extensions in VS Code, plus the browser when I'm sketching something out.</p>
-          <p>What I hand them: syntax checks, project-structure brainstorming, routine git and file housekeeping, and modeling &mdash; turning a rough idea or a Figma sketch into a concrete draft I can put in front of product engineers or the marketing team, so we're reacting to something real instead of a description.</p>
-          <p>What I don't hand them: the codebase itself. I wrote the feature code for this app. The model was an assistant, not the author, and I kept it there on purpose. If I let it write the code that ships, I lose the familiarity with the system that lets me catch it when it's confidently wrong &mdash; and on this project it was wrong often enough that that familiarity was the whole point.</p>
+          <p>What I hand them: syntax checks, brainstorming project structure, routine git and file housekeeping, and mockups. I'll turn a rough idea or a Figma sketch into a draft I can show the product engineers or the marketing team, so we're reacting to something we can actually look at.</p>
+          <p>What I don't hand them is the codebase. I wrote the feature code for this app myself and kept the model in a helper role on purpose. If it writes the code that ships, I lose the familiarity with the system that lets me catch it when it's confidently wrong, and on this project it was wrong often enough that I needed that familiarity.</p>
 
           <h2>The part it kept getting wrong</h2>
-          <p>The clearest example was mockups. I'd give a model one of my Figma sketches and ask it to turn it into a working draft of a screen. It would come back looking roughly right and wrong in the details: buttons in colors that weren't anywhere in the company's palette, button sizes that didn't match the pixel values in the spec, and &mdash; more than once &mdash; logos belonging to entirely different companies dropped in where ours should have been.</p>
-          <p>None of that is a disaster on its own. It becomes one if it reaches a colleague, because then you're presenting some other company's brand as your team's work. I caught it because I already knew the design system and the codebase well enough to see the mismatches straight away &mdash; the colors were simply not ones we used, the proportions were off, the logo wasn't ours. So the fix was manual: I corrected the colors, resized the components to spec, and swapped the real assets back in by hand before the mockup went to anyone. The model got me to a draft faster; it did not get me to something I could show.</p>
+          <p>The clearest example was mockups. I'd give a model one of my Figma sketches and ask for a working draft of the screen. It would come back roughly right but wrong in the details. Buttons were in colors that weren't anywhere in the company's palette, their sizes didn't match the spec, and more than once another company's logo showed up where ours should have been.</p>
+          <p>None of that is a disaster on its own. It becomes one if it reaches a colleague, because then you're presenting some other company's brand as your team's work. I caught it because I already knew the design system and the codebase well enough to spot the mismatches right away. So I fixed it by hand: I corrected the colors, resized the components to spec, and swapped our real assets back in before the mockup went to anyone. The model got me to a draft faster, but turning that draft into something I could show was still my job.</p>
 
           <h2>What I'd do differently</h2>
-          <p>I'd generate more drafts, not fewer. The value was never in one output being correct &mdash; it was in having something concrete to hold up against a standard I already carried, and pick apart. The most useful thing I took from that internship was how much criticism is worth: those drafts were only useful because I could criticize them hard and specifically. Next time I'd lean into that and treat the model as a way to produce more things to react to, earlier.</p>
+          <p>I'd generate more drafts, and earlier. What made them useful was having something concrete to hold up against a standard I already knew and pick apart. The biggest thing I took from that internship was how much good criticism is worth, and those drafts only helped because I could criticize them hard and specifically. Next time I'd use the model to get more of them in front of me sooner.</p>
         </div>
 
         <aside>
@@ -96,7 +96,7 @@
             <h3>The short version</h3>
             <p style="margin:0 0 12px; font-size:14.5px;"><strong>Hand off:</strong> syntax checks, structure brainstorming, git housekeeping, first-draft mockups from sketches.</p>
             <p style="margin:0 0 12px; font-size:14.5px;"><strong>Keep:</strong> the feature code that ships.</p>
-            <p style="margin:0; font-size:14.5px;"><strong>Overrode it when:</strong> mockups came back with off-brand colors, wrong button sizes, and other companies' logos &mdash; fixed by hand before anyone saw them.</p>
+            <p style="margin:0; font-size:14.5px;"><strong>Overrode it when:</strong> mockups came back with off-brand colors, wrong button sizes and other companies' logos. I fixed them by hand before anyone saw them.</p>
           </div>
           <div class="side-card">
             <h3>Stack</h3>
