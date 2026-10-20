@@ -2515,20 +2515,16 @@ button {
    back to back; js/clips.js swaps them and updates the tag.
    ============================================================ */
 .media-frame.card-clip {
+  aspect-ratio: 16 / 9;
   background: #0d0d0f;
 }
 
-/* Three cards in a row: match the other cards' key art height */
-@media (min-width: 1080px) {
-  .media-frame.card-clip {
-    aspect-ratio: 5 / 4;
-  }
-}
-
 .card-clip video {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   display: block;
 }
 
