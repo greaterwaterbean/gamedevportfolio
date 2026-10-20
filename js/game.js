@@ -288,7 +288,7 @@
     updateXp();
   }
 
-  var sectionIds = ['home', 'about', 'projects', 'experience', 'devlog', 'contact'].filter(function (id) {
+  var sectionIds = ['home', 'about', 'experience', 'projects', 'devlog', 'contact'].filter(function (id) {
     var s = document.getElementById(id);
     return s && getComputedStyle(s).display !== 'none';
   });

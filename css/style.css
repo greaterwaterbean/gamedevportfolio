@@ -1644,8 +1644,8 @@ button {
 
    Devlog is currently ON. To go back to portfolio-only mode,
    uncomment the rule below and renumber the homepage eyebrows
-   (with the devlog showing: About 01 / Projects 02 /
-   Experience 03 / Devlog 04 / Contact 05; without it, Contact
+   (with the devlog showing: About 01 / Experience 02 /
+   Projects 03 / Devlog 04 / Contact 05; without it, Contact
    goes back to 04).
    ============================================================ */
 /*
@@ -2078,4 +2078,473 @@ button {
 
 .badge-topgm::before {
   background-image: url(../img/icons/topgm.svg);
+}
+
+/* ============================================================
+   PLAYTEST LOG  (Tails of the Tower devlog)
+   A build-by-build track across the top, then one devlog entry
+   per playtest split into "How we ran it / My part / What changed".
+   ============================================================ */
+.playtest-track {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin: 0 0 44px;
+  padding: 0;
+  list-style: none;
+}
+
+.playtest-track li {
+  position: relative;
+  padding: 0 8px;
+  text-align: center;
+}
+
+.playtest-track li::before {
+  content: '';
+  position: absolute;
+  top: 13px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--border);
+}
+
+.playtest-track li:first-child::before {
+  left: 50%;
+}
+
+.playtest-track li:last-child::before {
+  right: 50%;
+}
+
+.playtest-track a {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.playtest-dot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  margin-bottom: 8px;
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--ink);
+  background: var(--cream);
+  border: 3px solid var(--ink);
+  border-radius: 50%;
+  box-shadow: 2px 2px 0 var(--shadow-ink);
+}
+
+.playtest-track .is-ship .playtest-dot {
+  background: var(--accent);
+}
+
+.playtest-track strong {
+  font-family: var(--font-display);
+  font-size: 15px;
+  color: var(--text);
+}
+
+.playtest-track span {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-faint);
+}
+
+.playtest-track a:hover strong {
+  color: var(--accent);
+}
+
+.devlog-entry .prose p.pt-lede {
+  margin-bottom: 22px;
+}
+
+.pt-shots {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin: 0 0 26px;
+}
+
+.pt-shots figure {
+  margin: 0;
+}
+
+.pt-shots a {
+  display: block;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #000;
+  border: 2px solid var(--ink);
+  border-radius: var(--radius-sm);
+  box-shadow: 3px 3px 0 var(--shadow-ink);
+}
+
+.pt-shots img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pt-shots figcaption {
+  margin-top: 8px;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--ink-soft);
+}
+
+.pt-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-top: 6px;
+}
+
+.pt-block h4 {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--rose-strong);
+  margin-bottom: 10px;
+}
+
+.pt-block ul {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pt-block li {
+  position: relative;
+  padding-left: 16px;
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+.pt-block li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--rose);
+}
+
+.pt-block li strong {
+  color: var(--ink);
+}
+
+@media (max-width: 900px) {
+  .pt-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+}
+
+@media (max-width: 640px) {
+  .playtest-track {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .playtest-track li {
+    text-align: left;
+    padding: 0;
+  }
+
+  .playtest-track li::before {
+    display: none;
+  }
+
+  .playtest-track a {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 4px 12px;
+  }
+
+  .playtest-dot {
+    margin-bottom: 0;
+    flex-shrink: 0;
+  }
+}
+
+/* ============================================================
+   CLIPS  (Scream Jam enemy AI showcase)
+   Looping, muted video with a "Game view / AI debug view"
+   toggle. js/clips.js swaps the source and keeps the timestamp.
+   ============================================================ */
+.clip {
+  margin: 0;
+}
+
+.clip-frame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: #0d0d0f;
+  border: 3px solid var(--ink);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 5px 5px 0 var(--shadow-ink);
+}
+
+.clip-frame video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.clip-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  margin-top: 12px;
+}
+
+.clip-label {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-dim);
+}
+
+.clip-toggle {
+  display: inline-flex;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  overflow: hidden;
+  box-shadow: 2px 2px 0 var(--shadow-ink);
+}
+
+.clip-toggle button {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  padding: 5px 11px;
+  border: 0;
+  background: var(--cream-soft);
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+
+.clip-toggle button + button {
+  border-left: 2px solid var(--ink);
+}
+
+.clip-toggle button[aria-pressed="true"] {
+  background: var(--accent);
+  color: var(--ink);
+}
+
+.clip-toggle button:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: -5px;
+}
+
+.clip-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin: 22px 0 6px;
+}
+
+@media (max-width: 760px) {
+  .clip-pair {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* One block per enemy on the Scream Jam page */
+.ghost {
+  padding: 56px 0 8px;
+  border-top: 1px dashed var(--border);
+}
+
+.ghost:first-of-type {
+  border-top: 0;
+  padding-top: 8px;
+}
+
+.ghost-head {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  margin-bottom: 8px;
+}
+
+.ghost-head h3 {
+  font-size: clamp(26px, 3.4vw, 34px);
+  color: var(--text);
+}
+
+.ghost-nick {
+  font-family: var(--font-hand);
+  font-size: 26px;
+  color: var(--accent);
+}
+
+.ghost-attacks {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--cream);
+  background: var(--rose-strong);
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  padding: 3px 10px;
+  box-shadow: 2px 2px 0 var(--shadow-ink);
+  margin-left: auto;
+}
+
+.ghost-hook {
+  font-size: 18px;
+  color: var(--text);
+  max-width: 760px;
+}
+
+.ghost-facts {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px 36px;
+  margin: 26px 0 0;
+}
+
+.ghost-facts dt {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+
+.ghost-facts dd {
+  margin: 0;
+  font-size: 15.5px;
+  color: var(--text-dim);
+}
+
+.ghost-facts dd strong {
+  color: var(--text);
+}
+
+@media (max-width: 760px) {
+  .ghost-facts {
+    grid-template-columns: 1fr;
+  }
+
+  .ghost-attacks {
+    margin-left: 0;
+  }
+}
+
+/* Rule table: Pac-Man rule vs. my rule */
+.rule-table-wrap {
+  overflow-x: auto;
+  margin: 8px 0 0;
+  border: 3px solid var(--ink);
+  border-radius: var(--radius);
+  box-shadow: 5px 5px 0 var(--shadow-ink);
+  background: var(--cream);
+}
+
+.rule-table {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: collapse;
+  font-size: 14.5px;
+  color: var(--ink-soft);
+}
+
+.rule-table th,
+.rule-table td {
+  text-align: left;
+  vertical-align: top;
+  padding: 13px 16px;
+  border-bottom: 1px dashed #d8c3a3;
+}
+
+.rule-table thead th {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--rose-strong);
+  border-bottom: 2px solid var(--ink);
+}
+
+.rule-table tbody th {
+  font-family: var(--font-display);
+  font-size: 16px;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.rule-table tr:last-child td,
+.rule-table tr:last-child th {
+  border-bottom: 0;
+}
+
+/* ============================================================
+   CARD CLIP  (Scream Jam project card on the homepage)
+   The card's media frame plays the 2x2 stealth and aggro clips
+   back to back; js/clips.js swaps them and updates the tag.
+   ============================================================ */
+.media-frame.card-clip {
+  background: #0d0d0f;
+}
+
+/* Three cards in a row: match the other cards' key art height */
+@media (min-width: 1080px) {
+  .media-frame.card-clip {
+    aspect-ratio: 5 / 4;
+  }
+}
+
+.card-clip video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.card-clip-tag {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: var(--accent);
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  padding: 2px 9px;
+  box-shadow: 2px 2px 0 var(--shadow-ink);
+  pointer-events: none;
 }
