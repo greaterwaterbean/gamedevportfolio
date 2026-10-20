@@ -110,7 +110,7 @@ Adding a new devlog entry to an existing project: duplicate one `<article class=
 2. On GitHub: **Settings → Pages → Build and deployment → Source: Deploy from a branch**, branch `main`, folder `/ (root)`. Save.
 3. The site goes live at `https://lukebonn.github.io/Portfolio/` within a minute or two.
 
-**After changing any CSS or JS**, bump the `?v=` tag on the stylesheet and script links before pushing: find-and-replace `?v=20261020` with a new value across every `.html` file. GitHub Pages tells browsers to cache those files for 10 minutes, so without a new tag, recent visitors get the new HTML with the old styles, and the page looks broken until the cache expires.
+**After changing any CSS or JS**, bump the `?v=` tag on the stylesheet and script links before pushing: find-and-replace the current tag (e.g. `?v=20261020c`) with a new value across every `.html` file. GitHub Pages tells browsers to cache those files for 10 minutes, so without a new tag, recent visitors get the new HTML with the old styles, and the page looks broken until the cache expires.
 
 ## Adding a custom domain
 
