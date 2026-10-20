@@ -70,17 +70,7 @@
     }
   }
 
-  var show = function (value) {
-    document.querySelectorAll('[data-view-count]').forEach(function (el) {
-      el.textContent = String(value).padStart(6, '0');
-      el.closest('[data-view-counter]').hidden = false;
-    });
-  };
-
   keys.forEach(function (key) {
-    fetch(API + '/hit/' + NS + '/' + key, { mode: 'cors', keepalive: true })
-      .then(function (r) { return r.ok ? r.json() : null; })
-      .then(function (data) { if (key === 'total' && data && typeof data.value === 'number') show(data.value); })
-      .catch(function () {});
+    fetch(API + '/hit/' + NS + '/' + key, { mode: 'cors', keepalive: true }).catch(function () {});
   });
 })();
