@@ -16,7 +16,7 @@ Recommended sizes: card `1200x675`, cover `1920x1080`, gallery/devlog shots any 
 - `img/projects/<project>/shot-01.jpg`, `shot-02.jpg`, ... — gallery screenshots.
 - `img/projects/<project>/log-*.jpg` — one optional image per devlog entry (filenames referenced in each entry, e.g. `log-2026-05-14.jpg`).
 
-Existing project folders: `tails-of-the-tower`, `whispers-through-the-halls`, `project-pet`, `the-last-alchemist`, `wildshape`, `unreal-soulslike`, `in-progress-2`.
+Existing project folders: `lumen`, `tails-of-the-tower`, `whispers-through-the-halls`, `project-pet`, `the-last-alchemist`, `wildshape`, `unreal-soulslike`, `in-progress-2`.
 
 For a Side Quests project, `card.png` is the small homepage thumbnail (shown at about 136px wide, cropped to the 181×144 shape of The Last Alchemist's), so it doesn't need to be large.
 

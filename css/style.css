@@ -972,6 +972,18 @@ button {
   background-image: url(../img/icons/wrench.png);
 }
 
+/* paused projects: a two-bar pause glyph */
+.badge-hold {
+  background: var(--cream-soft);
+  color: var(--ink);
+}
+
+.badge-hold::before {
+  width: 11px;
+  height: 11px;
+  background: linear-gradient(90deg, var(--ink) 0 35%, transparent 35% 65%, var(--ink) 65%);
+}
+
 .project-card-tools {
   font-family: var(--font-mono);
   font-size: 12.5px;
