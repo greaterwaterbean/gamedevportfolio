@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="dark">
-<title>Project Remus | Luke Bonniwell</title>
-<meta name="description" content="Project Remus: a wave shooter built in Unity in nine days for the Official 2026 Unity Game Jam, where every kill rolls a die you spend on your stats. One of two programmers on a team of five.">
-<meta property="og:title" content="Project Remus | Luke Bonniwell">
-<meta property="og:description" content="A wave shooter built in Unity in nine days for the Official 2026 Unity Game Jam. Every kill rolls a die you spend on your stats.">
+<title>Lucky Remus | Luke Bonniwell</title>
+<meta name="description" content="Lucky Remus: an arena shooter where dice drive your upgrades, built in Unity by a team of five for the Official 2026 Unity Game Jam. Programmer and integrator.">
+<meta property="og:title" content="Lucky Remus | Luke Bonniwell">
+<meta property="og:description" content="An arena shooter where dice drive your upgrades, built in Unity for the Official 2026 Unity Game Jam.">
 <meta property="og:type" content="article">
 <link rel="icon" type="image/svg+xml" href="../img/site/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -46,17 +46,17 @@
         <span class="badge badge-shipped">Shipped</span>
         <span class="project-card-tools">Unity 6 · C#</span>
       </div>
-      <h1>Project Remus</h1>
-      <p class="project-tagline">A wave shooter built in nine days for the Official 2026 Unity Game Jam, whose theme was "Lucky Number". Every kill rolls a die, and you spend the rolls on your stats. I was one of two programmers on a team of five.</p>
+      <h1>Lucky Remus</h1>
+      <p class="project-tagline">An arena shooter where dice drive your upgrades, built by a team of five for the Official 2026 Unity Game Jam. The theme was "Lucky Number". I was a programmer and the team's integrator.</p>
 
       <a class="media-frame project-cover" href="https://greaterwaterbean.itch.io/project-remus" target="_blank" rel="noopener">
-        <img src="../img/projects/project-remus/cover.jpg" alt="The title card: a coin standing on a lily pad with three flies circling, over the words Lucky Remus">
+        <img src="../img/projects/project-remus/cover.jpg" alt="Star power: the player inside a disco-ball aura, surrounded by flies and mosquitoes">
       </a>
 
       <div class="project-meta-row">
         <div class="fact">
           <dt>Role</dt>
-          <dd>Programmer: dice, stats, HUD, menus</dd>
+          <dd>Programmer &amp; integrator</dd>
         </div>
         <div class="fact">
           <dt>Team</dt>
@@ -84,29 +84,56 @@
       <div class="project-body">
         <div class="prose">
           <h2>Overview</h2>
-          <p>Project Remus (the title screen calls it Lucky Remus) is a 3D arena shooter seen from above. You hold off ten waves of flies and mosquitoes, and clearing the tenth wins the run. It plays in the browser on itch.io.</p>
-          <p>Every kill rolls a die into a tray at the top of the screen. Once dice have landed, pressing 1 to 6 puts all of them into one stat: health, stamina, speed, fire rate, damage or armor. Each die adds the number it rolled, so a run is a string of small bets on what the next wave will ask for.</p>
-          <p>The lucky number is the jam's theme. You pick a number from 1 to 6 on the main menu, and whenever a die lands on it you get a star: ten seconds with every stat doubled, and disco lights.</p>
+          <p>Lucky Remus is an arena shooter where dice take the place of XP. You hold a swamp against ten waves of flies and mosquitoes, and clearing the tenth wins the run. It plays in the browser on itch.io, where it's listed as Project Remus.</p>
+          <ul>
+            <li><strong>Dice instead of XP:</strong> every kill pops a d20 out of the enemy and drops a d6 into the tray. When it lands, you put it into health, stamina, speed, fire rate, damage or armor, and the number rolled is how much that stat grows.</li>
+            <li><strong>Lucky number:</strong> you pick one on the menu. Rolling it gives ten seconds of every stat doubled, with a disco-ball aura.</li>
+            <li><strong>Attacks you can read:</strong> there are eight enemy types, four walking flies and four flying mosquitoes. Each one shows its attack on the ground before it lands, as swing arcs, dash lanes or bullet lanes, so you can dodge.</li>
+            <li><strong>Ten waves:</strong> a new enemy type each wave up to eight, then two mixed waves and a win screen. Each wave opens with a giant number and the enemies that are coming.</li>
+            <li><strong>The arena:</strong> a swamp cut by long trenches with bridges. Falling in costs half your health. Flies have to cross by the bridges; mosquitoes fly straight over.</li>
+          </ul>
 
           <h2>My Contributions</h2>
           <ul>
-            <li>Built the dice and level-up system: the tray of rolling dice, the die that pops out where an enemy died and shows its roll, and spending dice on the six stats.</li>
-            <li>Wrote the event bus the game's parts talk through. An enemy's death raises one event, and the dice tray hears it without either script knowing about the other. My dice and the other programmer's enemies could be written separately.</li>
-            <li>Made the HUD and every menu: health, stamina and armor bars, the stat panel, wave intros, the timer and kill count, plus the main menu, upgrades, pause, game over and win screens.</li>
-            <li>Added the lucky number and its star, and tuned the difficulty: eight enemy types set out in hand-made wave plans, charge attacks with a warning on the ground, and trenches that cost half your health if you miss the bridge.</li>
-            <li>Ran the team's shared branch, merging the art, animation, level and audio work, and wrote the editor menu item that builds and zips the web version for itch.io.</li>
+            <li>Built the event hub the game's scripts talk through, along with the stats and the health bar.</li>
+            <li>Built the dice level-up system and the lucky-number star power, plus the HUD and the menus.</li>
+            <li>Later in the jam, took on the eight enemy types, the wave plans, the attack warnings, the hitboxes, the arena layout and how movement feels.</li>
+            <li>Merged everyone's art, animation and audio work into one build.</li>
+          </ul>
+
+          <h2>The Team</h2>
+          <ul>
+            <li><strong>Code:</strong> me and CashBrandicoot, who built player movement, the camera, shooting, the enemy base class and AI, and the wave spawner. That's the combat foundation everything else sits on.</li>
+            <li><strong>Art:</strong> SeaGamez. The level blockout and Level 1 scene, props, swamp textures and grass, enemy textures, and the title card.</li>
+            <li><strong>Animation:</strong> Dhaval. The enemy and player rigs and animations.</li>
+            <li><strong>Sound:</strong> Forrest. Sound effects including the gunfire layers, music and UI sounds.</li>
           </ul>
 
           <h2>Gallery</h2>
           <div class="gallery-grid">
-            <a class="media-frame" href="../img/projects/project-remus/wave-1.jpg" target="_blank" rel="noopener">
-              <img src="../img/projects/project-remus/wave-1.jpg" alt="Wave 1 starting: flies closing in on the player between stone pillars, with the six stats listed down the left of the screen" loading="lazy">
+            <a class="media-frame" href="../img/projects/project-remus/combat.jpg" target="_blank" rel="noopener">
+              <img src="../img/projects/project-remus/combat.jpg" alt="Mid-fight: flies winding up swings on orange warning lanes while a d20 pops out of a kill" loading="lazy">
             </a>
-            <a class="media-frame" href="../img/projects/project-remus/upgrades.jpg" target="_blank" rel="noopener">
-              <img src="../img/projects/project-remus/upgrades.jpg" alt="The Upgrades screen explaining the six stats and the lucky number star" loading="lazy">
+            <a class="media-frame" href="../img/projects/project-remus/star-power.jpg" target="_blank" rel="noopener">
+              <img src="../img/projects/project-remus/star-power.jpg" alt="Star power: the player inside a disco-ball aura with three lucky dice in the tray" loading="lazy">
             </a>
-            <a class="media-frame" href="../img/projects/project-remus/menu.jpg" target="_blank" rel="noopener">
-              <img src="../img/projects/project-remus/menu.jpg" alt="The main menu, with Play, Controls and Credits buttons and a lucky number picker set to 6" loading="lazy">
+            <a class="media-frame" href="../img/projects/project-remus/dice.jpg" target="_blank" rel="noopener">
+              <img src="../img/projects/project-remus/dice.jpg" alt="Three kills, three d20s showing their rolls, and six dice waiting in the tray" loading="lazy">
+            </a>
+            <a class="media-frame" href="../img/projects/project-remus/wave-intro.jpg" target="_blank" rel="noopener">
+              <img src="../img/projects/project-remus/wave-intro.jpg" alt="Wave 7 starting, with a row of seven enemy types and how many of each are coming" loading="lazy">
+            </a>
+            <a class="media-frame" href="../img/projects/project-remus/arena.jpg" target="_blank" rel="noopener">
+              <img src="../img/projects/project-remus/arena.jpg" alt="A wide shot of a trench and its bridge: flies crossing the planks while mosquitoes fly over the hole" loading="lazy">
+            </a>
+            <a class="media-frame" href="../img/projects/project-remus/win.jpg" target="_blank" rel="noopener">
+              <img src="../img/projects/project-remus/win.jpg" alt="The win screen after wave 10: time 4:31, 45 kills, level 12" loading="lazy">
+            </a>
+            <a class="media-frame" href="../img/projects/project-remus/title.jpg" target="_blank" rel="noopener">
+              <img src="../img/projects/project-remus/title.jpg" alt="The main menu: the Lucky Remus title card with Play, Controls and Credits buttons and a lucky number picker set to 6" loading="lazy">
+            </a>
+            <a class="media-frame" href="../img/projects/project-remus/credits.jpg" target="_blank" rel="noopener">
+              <img src="../img/projects/project-remus/credits.jpg" alt="The in-game credits screen" loading="lazy">
             </a>
           </div>
         </div>
@@ -124,11 +151,11 @@
           </div>
           <div class="side-card">
             <h3>Jam</h3>
-            <p style="margin:0; font-size:14.5px;">Official 2026 Unity Game Jam, Nov 5–14, 2026. Theme: "Lucky Number". Seven days to build plus two to submit. The full team is credited in the game and on the itch page.</p>
+            <p style="margin:0; font-size:14.5px;">Official 2026 Unity Game Jam, Nov 2026. Theme: "Lucky Number". Seven days to build plus two to submit.</p>
           </div>
           <div class="side-card">
-            <h3>How it was built</h3>
-            <p style="margin:0; font-size:14.5px;">The code was AI-assisted, as the itch page says. Dice sprites are "Cute Dice" by Dani Maccari.</p>
+            <h3>Also credited</h3>
+            <p style="margin:0; font-size:14.5px;">Dice sprites are "Cute Dice" by Dani Maccari. The fonts are Caesar Dressing and Crimson Text.</p>
           </div>
         </aside>
       </div>
