@@ -23,7 +23,9 @@ credits.html, CREDITS.md        attribution for every asset pack used
 
 ## Design system
 
-Dark warm background with hand-drawn "pinned to a corkboard" cream cards, hard offset pixel-shadows on buttons/badges, and a hand-lettered accent font (Caveat) — built around Crusenho's free itch.io UI packs. Colors, buttons, badges, and card styling all live in `css/style.css` as CSS custom properties at the top of the file if you want to retheme.
+Night-navy background with hand-drawn "pinned to a corkboard" off-white cards, navy ink, hard offset pixel-shadows on buttons/badges, and a hand-lettered accent font (Caveat) — built around Crusenho's free itch.io UI packs. Colors, buttons, badges, and card styling all live in `css/style.css` as CSS custom properties at the top of the file if you want to retheme.
+
+Hover effects live in the "HIGHLIGHTER" section at the end of `css/style.css`: links get a pastel marker-pen stroke that sweeps in behind them (the active nav link keeps it), images and clips get a ring that pulses outward, and cards press in slightly while clicked. Each element picks its pastel with `--hl` (stroke) and `--ring` (pulse), set to one of the `--hl-*` colors. Wrap a phrase in `<mark>` (or `<mark class="mark-purple">`, `mark-blue`) to highlight it in running text.
 
 ### Game layer
 

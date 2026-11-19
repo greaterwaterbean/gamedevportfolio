@@ -154,7 +154,7 @@ body[data-fx~="inv-shine"] .inv-slot::after {
   position: absolute;
   inset: -20px auto -20px -30px;
   width: 14px;
-  background: rgba(255, 248, 231, 0.55);
+  background: rgba(252, 252, 250, 0.55);
   transform: rotate(25deg) translateX(0);
   animation: inv-shine 4.5s steps(12) infinite;
 }
@@ -358,7 +358,8 @@ body[data-fx~="menu-cursor"] .site-nav a.is-active::before {
   content: '';
   position: absolute;
   top: 50%;
-  left: -14px;
+  /* nav links carry 9px of padding for the highlighter stroke */
+  left: -5px;
   width: 8px;
   height: 10px;
   margin-top: -5px;
@@ -409,7 +410,7 @@ body[data-fx~="menu-cursor"] .site-nav a.is-active::before {
   font-size: 10px;
   line-height: 1;
   color: var(--text-dim);
-  background: #150f0a;
+  background: #0e1420;
   border: 2px solid var(--border);
   border-top: 0;
   border-radius: 0 0 6px 6px;
@@ -632,7 +633,7 @@ body[data-fx~="press-start"] .project-card > .media-frame::before {
   white-space: pre;
   color: var(--cream);
   text-shadow: 3px 3px 0 var(--shadow-ink);
-  background: rgba(20, 13, 8, 0.62);
+  background: rgba(10, 14, 23, 0.62);
   opacity: 0;
   transition: opacity 0.15s ease;
 }
@@ -1109,7 +1110,7 @@ body[data-fx~="shipped-flags"] .game-row:nth-child(4) .game-status { animation-d
   font-size: 12px;
   line-height: 1;
   color: var(--text-dim);
-  background: #150f0a;
+  background: #0e1420;
   border: 2px solid var(--border);
   border-radius: 7px;
   box-shadow: 2px 2px 0 var(--shadow-ink);
